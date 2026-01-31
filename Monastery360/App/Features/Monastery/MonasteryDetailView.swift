@@ -17,11 +17,14 @@ struct MonasteryDetailView: View {
                 ScrollView {
                     VStack(spacing: 0) {
                         // 1. Parallax Header Placeholder
-                        // For MVP: Simple Image
-                        Rectangle()
-                            .fill(Color.gray.opacity(0.3))
-                            .frame(height: 300)
-                            .overlay(Text("Parallax Hero Image").foregroundStyle(.white))
+                        ZStack {
+                            Rectangle()
+                                .fill(Color.Surface.secondary)
+                            Image(systemName: "photo")
+                                .font(.system(size: 40))
+                                .foregroundStyle(Color.Text.tertiary)
+                        }
+                        .frame(height: 300)
                         
                         // 2. Title Block
                         VStack(alignment: .leading, spacing: Space.sm) {
@@ -126,10 +129,7 @@ struct ActionButton: View {
                 if primary { Text(title).fontWeight(.bold) }
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 12)
-            .background(primary ? Color.Brand.primary : Color.Surface.interaction)
-            .foregroundStyle(primary ? Color.Text.inverse : Color.Text.primary)
-            .cornerRadius(Radius.md)
+            .standardButtonStyle(primary: primary)
         }
     }
 }

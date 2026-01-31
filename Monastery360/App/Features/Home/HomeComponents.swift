@@ -42,8 +42,7 @@ struct FeaturedHeroCard: View {
             .padding(Space.lg)
         }
         .frame(height: 250)
-        .cornerRadius(Radius.lg)
-        .shadow(radius: 5)
+        .cardStyle(radius: Radius.lg, elevation: 5, bg: .clear)
     }
 }
 
@@ -72,5 +71,6 @@ struct MonasteryCompactCard: View {
             .foregroundStyle(Color.Text.secondary)
         }
         .frame(width: 160)
+        .cardStyle(radius: Radius.md, elevation: 2, bg: .clear)
     }
 }

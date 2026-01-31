@@ -17,8 +17,4 @@ struct Typography {
     
 }
 
-extension View {
-    func style(_ font: Font) -> some View {
-        self.font(font)
-    }
-}
+
