@@ -1,0 +1,722 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0051C3FE4A21B0906B20A9D5 /* Dimens+DesignToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EC0322028235C097328AC9 /* Dimens+DesignToken.swift */; };
+		0D0AE68210CFA3D999DD82D5 /* TenantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B39ACCF1247D7829DC2055 /* TenantService.swift */; };
+		1350FE86D58088477FADF061 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017F0E851B3312F8831A656D /* AppState.swift */; };
+		1CD0D9D239E7244CC170735A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AE397E645FCF4C3BDA7CAD /* ProfileView.swift */; };
+		28600F1EB2F46758848E41CC /* OfflineStorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA91649BC212F0895A292E2A /* OfflineStorageView.swift */; };
+		30DE7A2A1D5848A70411C293 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADCEBB51C5E067F6D3EFAAE /* Router.swift */; };
+		3915E52CA18886D32825C5FD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8E80D026FAE0FBFD16F2B0E2 /* FirebaseFirestore */; };
+		3AE35EFCAE74124AF3B0B8A4 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A218AE9FAC75793667E46E9D /* EmptyStateView.swift */; };
+		3AE6CE957C0EC919DA5CEEF0 /* MonasteryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FF4616C094CAFBA0076081 /* MonasteryDetailView.swift */; };
+		3BF46D836CDC44831101B242 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC673125205AC59B642C9C85 /* OnboardingView.swift */; };
+		41C9985BB564670EAE5E36CD /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B44DD06D55DDC104A3E70B /* RootView.swift */; };
+		45728B91E6071362AFEE6D95 /* Font+DesignToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D725FCFBF02E2CBD0D882C68 /* Font+DesignToken.swift */; };
+		45C93DC11C0325E6FBA4DE11 /* MonasteryPreviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907AD1F8BA9F1540EAF2FDE5 /* MonasteryPreviewCard.swift */; };
+		4A11F2A0B885A8AEEBBBC85C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 072CC00C73DCB2D792CD78C2 /* FirebaseStorage */; };
+		4C8DA7FC2DCF12F55B417632 /* Monastery360App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C3F5F1B42DC3E989B357FA /* Monastery360App.swift */; };
+		584B98611056BB8695ED5367 /* GlobalConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B734117D151B78BE6D52CB4C /* GlobalConfigService.swift */; };
+		5BC3936706B278ED2F5DAC12 /* Experience360View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC21368A634CD5F94A9ADB7F /* Experience360View.swift */; };
+		5C73C23368EF1303BF4DCC0A /* M360TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967591013769C7FD632FAA72 /* M360TextField.swift */; };
+		61EE9D39D311247F4E9AED3D /* OfflineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873232AE930B1E2211DFDE96 /* OfflineManager.swift */; };
+		652F3AEAC9A77B5D4BF1A871 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C2FA8C8CA6E1C0973FB0 /* StorageService.swift */; };
+		6667C808CF78A7F3B3E3D051 /* HomeComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B15BF58D8F02944A4CB5C5 /* HomeComponents.swift */; };
+		6A109B425F3D10CFDCD15CF4 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431B1F9B4675E71E8A68187D /* AnalyticsService.swift */; };
+		6AB5113DC932AFA09E05EE61 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F4469BA6D47E18E7A0665234 /* FirebaseFirestoreSwift */; };
+		70B26DD7324E65434EAA0438 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 74198607866C61C59BA5C493 /* FirebaseAuth */; };
+		7812B5824F869766D14FECA2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED69FA6C9AA677F74D2B15 /* User.swift */; };
+		864A9F5990DBB66A262FE907 /* AuthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CC0C77FCECA2B467132F68 /* AuthSelectionView.swift */; };
+		9218900A95078B8890862AF7 /* PanoramaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4F283BF368AF806F7356B0 /* PanoramaView.swift */; };
+		A6A13DAD64BF65766E6FBE64 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACD08C318433F8C684DC236 /* LocationService.swift */; };
+		A6DD960FCE75C3A2112F1582 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC17CA94A95453D8159E65 /* HomeView.swift */; };
+		AC56EF655D482270BAD6B758 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E824D19E6373EA7A670DBAB0 /* SettingsView.swift */; };
+		BA6E3B6183558C9A55F73156 /* ServiceStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A2EAED28264637BF33739D /* ServiceStubs.swift */; };
+		BBC07A88FCEFB367E83C0FE5 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85EB237C780CC341983CD11 /* View+Extensions.swift */; };
+		BD12E60B1059F18A6B7ACCC1 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737B742FE622C01ABB18E51 /* FirestoreService.swift */; };
+		BE83E227201B3E5751B4FD6F /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80D2D034058A622BD5C6FCC /* DIContainer.swift */; };
+		C1A5D3E87E7BE393B6CCBDD4 /* Monastery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43CCD42965233CDA5A6043 /* Monastery.swift */; };
+		C481EBBD6A0299DB7D1DAF3A /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F6C2FEF561CD9BCF27859 /* ToastView.swift */; };
+		C90E77F4D6F61A4AF41E3402 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9463F6DCF0209822FE8D8C4 /* SplashView.swift */; };
+		CE0E10FC78DE5B277B1376A3 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D814C9E25161A748EA3C097 /* SavedView.swift */; };
+		CE158EC676244E001C460186 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7974960EFB487F8EFB740E8B /* AboutView.swift */; };
+		D112A020992FF96868EFD9F8 /* MonasteryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BC71233DF4E810AB82CC9 /* MonasteryRepository.swift */; };
+		D7BE89625549E8581111A4DE /* M360Toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A081DE6D2B61DF527D00A8 /* M360Toggle.swift */; };
+		D7BF554284E461B21D3FFD3A /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3202ED19E094CA87E4079053 /* MainTabView.swift */; };
+		DE2849F36CA3C25EC7003FA2 /* Color+DesignToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C396A0DBCB80D2DED94EBDD /* Color+DesignToken.swift */; };
+		E66F77867319FEE903A35B9F /* DiscoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA0443051545EEA73635DD5 /* DiscoveryView.swift */; };
+		EA5E18B9D6C038CA5AF2729F /* M360Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A45835068E330ABCDF4AD7 /* M360Button.swift */; };
+		F2477E4731D47EAD76F287B9 /* PermissionPrimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D0BC527EEEF08C23F09FA6 /* PermissionPrimingView.swift */; };
+		F2FF9365AD626C7AB0CAE6F4 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2314C6A8FC34CBFE7AFA7513 /* MapView.swift */; };
+		F64599C40D6A223590CE1443 /* MonasteryComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8CCFB0F15B2FEA26CABE66 /* MonasteryComponents.swift */; };
+		F6783B6E6FD261028115178C /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E00186FB4323FA0466548D /* AuthService.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		017F0E851B3312F8831A656D /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		04570C20EB0D9FBD4C649D2D /* Monastery360.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Monastery360.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		06D0BC527EEEF08C23F09FA6 /* PermissionPrimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionPrimingView.swift; sourceTree = "<group>"; };
+		0ADCEBB51C5E067F6D3EFAAE /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		0B43CCD42965233CDA5A6043 /* Monastery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monastery.swift; sourceTree = "<group>"; };
+		16FF4616C094CAFBA0076081 /* MonasteryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonasteryDetailView.swift; sourceTree = "<group>"; };
+		1C396A0DBCB80D2DED94EBDD /* Color+DesignToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+DesignToken.swift"; sourceTree = "<group>"; };
+		2314C6A8FC34CBFE7AFA7513 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		2E9F6C2FEF561CD9BCF27859 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		3202ED19E094CA87E4079053 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		35A081DE6D2B61DF527D00A8 /* M360Toggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M360Toggle.swift; sourceTree = "<group>"; };
+		3E8CCFB0F15B2FEA26CABE66 /* MonasteryComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonasteryComponents.swift; sourceTree = "<group>"; };
+		431B1F9B4675E71E8A68187D /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
+		45E00186FB4323FA0466548D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		51B15BF58D8F02944A4CB5C5 /* HomeComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComponents.swift; sourceTree = "<group>"; };
+		57ED69FA6C9AA677F74D2B15 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5A00C2FA8C8CA6E1C0973FB0 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		5D814C9E25161A748EA3C097 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
+		63C3F5F1B42DC3E989B357FA /* Monastery360App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monastery360App.swift; sourceTree = "<group>"; };
+		74B39ACCF1247D7829DC2055 /* TenantService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantService.swift; sourceTree = "<group>"; };
+		7974960EFB487F8EFB740E8B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		873232AE930B1E2211DFDE96 /* OfflineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineManager.swift; sourceTree = "<group>"; };
+		87A45835068E330ABCDF4AD7 /* M360Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M360Button.swift; sourceTree = "<group>"; };
+		8D4F283BF368AF806F7356B0 /* PanoramaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaView.swift; sourceTree = "<group>"; };
+		907AD1F8BA9F1540EAF2FDE5 /* MonasteryPreviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonasteryPreviewCard.swift; sourceTree = "<group>"; };
+		967591013769C7FD632FAA72 /* M360TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M360TextField.swift; sourceTree = "<group>"; };
+		98CC0C77FCECA2B467132F68 /* AuthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSelectionView.swift; sourceTree = "<group>"; };
+		9BAC17CA94A95453D8159E65 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A218AE9FAC75793667E46E9D /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		A80D2D034058A622BD5C6FCC /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		A9463F6DCF0209822FE8D8C4 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		B6A2EAED28264637BF33739D /* ServiceStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStubs.swift; sourceTree = "<group>"; };
+		B734117D151B78BE6D52CB4C /* GlobalConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConfigService.swift; sourceTree = "<group>"; };
+		BC21368A634CD5F94A9ADB7F /* Experience360View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experience360View.swift; sourceTree = "<group>"; };
+		D1B44DD06D55DDC104A3E70B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		D2AE397E645FCF4C3BDA7CAD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		D3EC0322028235C097328AC9 /* Dimens+DesignToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dimens+DesignToken.swift"; sourceTree = "<group>"; };
+		D725FCFBF02E2CBD0D882C68 /* Font+DesignToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+DesignToken.swift"; sourceTree = "<group>"; };
+		DACD08C318433F8C684DC236 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		E824D19E6373EA7A670DBAB0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F737B742FE622C01ABB18E51 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
+		F85EB237C780CC341983CD11 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		F96BC71233DF4E810AB82CC9 /* MonasteryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonasteryRepository.swift; sourceTree = "<group>"; };
+		FA91649BC212F0895A292E2A /* OfflineStorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineStorageView.swift; sourceTree = "<group>"; };
+		FC673125205AC59B642C9C85 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		FDA0443051545EEA73635DD5 /* DiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		925AF8F079F92E8952AB4E11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70B26DD7324E65434EAA0438 /* FirebaseAuth in Frameworks */,
+				3915E52CA18886D32825C5FD /* FirebaseFirestore in Frameworks */,
+				6AB5113DC932AFA09E05EE61 /* FirebaseFirestoreSwift in Frameworks */,
+				4A11F2A0B885A8AEEBBBC85C /* FirebaseStorage in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A61FFA5A3127C384F9D8CD9 /* Saved */ = {
+			isa = PBXGroup;
+			children = (
+				5D814C9E25161A748EA3C097 /* SavedView.swift */,
+			);
+			path = Saved;
+			sourceTree = "<group>";
+		};
+		29784720469ED2C30A3C9B26 /* Offline */ = {
+			isa = PBXGroup;
+			children = (
+				873232AE930B1E2211DFDE96 /* OfflineManager.swift */,
+			);
+			path = Offline;
+			sourceTree = "<group>";
+		};
+		29A44B0C14E9502B0F549046 /* Experience360 */ = {
+			isa = PBXGroup;
+			children = (
+				BC21368A634CD5F94A9ADB7F /* Experience360View.swift */,
+				8D4F283BF368AF806F7356B0 /* PanoramaView.swift */,
+			);
+			path = Experience360;
+			sourceTree = "<group>";
+		};
+		2AD3AB43BF762B886FD274F3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				51B15BF58D8F02944A4CB5C5 /* HomeComponents.swift */,
+				9BAC17CA94A95453D8159E65 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		2B27291D363B124B35D285CB /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				98CC0C77FCECA2B467132F68 /* AuthSelectionView.swift */,
+				FC673125205AC59B642C9C85 /* OnboardingView.swift */,
+				06D0BC527EEEF08C23F09FA6 /* PermissionPrimingView.swift */,
+				A9463F6DCF0209822FE8D8C4 /* SplashView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		2C3ABC3CF3EB21E208B46CEF /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				DACD08C318433F8C684DC236 /* LocationService.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		2FBF9ADE649F3A77A93608BD = {
+			isa = PBXGroup;
+			children = (
+				630B4AA9C1B601EE101B47E1 /* App */,
+				4C36A528374D763A49740289 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		43824059B094F6943F1E5C32 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FA91649BC212F0895A292E2A /* OfflineStorageView.swift */,
+				D2AE397E645FCF4C3BDA7CAD /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		4956C8203730AFA814FDD055 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E5E388EB9A56325D27178756 /* AppState */,
+				597A847775379E25DD65CEC1 /* DependencyInjection */,
+				B1D562AD509838E145CF08F8 /* Routing */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		4C36A528374D763A49740289 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04570C20EB0D9FBD4C649D2D /* Monastery360.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		53FC77B1C742A4C43937A533 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0B43CCD42965233CDA5A6043 /* Monastery.swift */,
+				57ED69FA6C9AA677F74D2B15 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		597A847775379E25DD65CEC1 /* DependencyInjection */ = {
+			isa = PBXGroup;
+			children = (
+				A80D2D034058A622BD5C6FCC /* DIContainer.swift */,
+			);
+			path = DependencyInjection;
+			sourceTree = "<group>";
+		};
+		630B4AA9C1B601EE101B47E1 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				4956C8203730AFA814FDD055 /* Core */,
+				C4155DE6A1176333CFFA878E /* DesignSystem */,
+				942D530D513925B23C2580D5 /* Features */,
+				53FC77B1C742A4C43937A533 /* Models */,
+				ACFE8B0A015B3279866E2F5F /* Services */,
+				7B17ED2B2BA6DD41A028C2E4 /* Utilities */,
+				63C3F5F1B42DC3E989B357FA /* Monastery360App.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		7B17ED2B2BA6DD41A028C2E4 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F85EB237C780CC341983CD11 /* View+Extensions.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		942D530D513925B23C2580D5 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				2B27291D363B124B35D285CB /* Auth */,
+				CE9C037D4E4803F9A7B9EF0F /* Discovery */,
+				29A44B0C14E9502B0F549046 /* Experience360 */,
+				2AD3AB43BF762B886FD274F3 /* Home */,
+				B4293109791A028ADBD4285F /* Map */,
+				DD60EAC038BFD8E20C2AA9B4 /* Monastery */,
+				43824059B094F6943F1E5C32 /* Profile */,
+				1A61FFA5A3127C384F9D8CD9 /* Saved */,
+				D12134903D04E904C5F0DD0E /* Settings */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		9951BE07EC227CD3FCE868B7 /* Tokens */ = {
+			isa = PBXGroup;
+			children = (
+				1C396A0DBCB80D2DED94EBDD /* Color+DesignToken.swift */,
+				D3EC0322028235C097328AC9 /* Dimens+DesignToken.swift */,
+				D725FCFBF02E2CBD0D882C68 /* Font+DesignToken.swift */,
+			);
+			path = Tokens;
+			sourceTree = "<group>";
+		};
+		9F3A4D31CCB327E1082DCA9C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A218AE9FAC75793667E46E9D /* EmptyStateView.swift */,
+				87A45835068E330ABCDF4AD7 /* M360Button.swift */,
+				967591013769C7FD632FAA72 /* M360TextField.swift */,
+				35A081DE6D2B61DF527D00A8 /* M360Toggle.swift */,
+				2E9F6C2FEF561CD9BCF27859 /* ToastView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		ACFE8B0A015B3279866E2F5F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D1C5FC5BE23C464FA2C191EC /* Analytics */,
+				BEB832D905A265F6F69A7A2C /* Firebase */,
+				2C3ABC3CF3EB21E208B46CEF /* Location */,
+				29784720469ED2C30A3C9B26 /* Offline */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B1D562AD509838E145CF08F8 /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				3202ED19E094CA87E4079053 /* MainTabView.swift */,
+				D1B44DD06D55DDC104A3E70B /* RootView.swift */,
+				0ADCEBB51C5E067F6D3EFAAE /* Router.swift */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
+		B4293109791A028ADBD4285F /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				2314C6A8FC34CBFE7AFA7513 /* MapView.swift */,
+				907AD1F8BA9F1540EAF2FDE5 /* MonasteryPreviewCard.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		BEB832D905A265F6F69A7A2C /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				45E00186FB4323FA0466548D /* AuthService.swift */,
+				F737B742FE622C01ABB18E51 /* FirestoreService.swift */,
+				B734117D151B78BE6D52CB4C /* GlobalConfigService.swift */,
+				F96BC71233DF4E810AB82CC9 /* MonasteryRepository.swift */,
+				B6A2EAED28264637BF33739D /* ServiceStubs.swift */,
+				5A00C2FA8C8CA6E1C0973FB0 /* StorageService.swift */,
+				74B39ACCF1247D7829DC2055 /* TenantService.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		C4155DE6A1176333CFFA878E /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				9F3A4D31CCB327E1082DCA9C /* Components */,
+				9951BE07EC227CD3FCE868B7 /* Tokens */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		CE9C037D4E4803F9A7B9EF0F /* Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				FDA0443051545EEA73635DD5 /* DiscoveryView.swift */,
+			);
+			path = Discovery;
+			sourceTree = "<group>";
+		};
+		D12134903D04E904C5F0DD0E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7974960EFB487F8EFB740E8B /* AboutView.swift */,
+				E824D19E6373EA7A670DBAB0 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		D1C5FC5BE23C464FA2C191EC /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				431B1F9B4675E71E8A68187D /* AnalyticsService.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		DD60EAC038BFD8E20C2AA9B4 /* Monastery */ = {
+			isa = PBXGroup;
+			children = (
+				3E8CCFB0F15B2FEA26CABE66 /* MonasteryComponents.swift */,
+				16FF4616C094CAFBA0076081 /* MonasteryDetailView.swift */,
+			);
+			path = Monastery;
+			sourceTree = "<group>";
+		};
+		E5E388EB9A56325D27178756 /* AppState */ = {
+			isa = PBXGroup;
+			children = (
+				017F0E851B3312F8831A656D /* AppState.swift */,
+			);
+			path = AppState;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		73CB11B9781B7AEE4C914D75 /* Monastery360 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42CB370319DFC778C6528CB7 /* Build configuration list for PBXNativeTarget "Monastery360" */;
+			buildPhases = (
+				FDED92119B07EFC11EA4F715 /* Sources */,
+				925AF8F079F92E8952AB4E11 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Monastery360;
+			packageProductDependencies = (
+				74198607866C61C59BA5C493 /* FirebaseAuth */,
+				8E80D026FAE0FBFD16F2B0E2 /* FirebaseFirestore */,
+				F4469BA6D47E18E7A0665234 /* FirebaseFirestoreSwift */,
+				072CC00C73DCB2D792CD78C2 /* FirebaseStorage */,
+			);
+			productName = Monastery360;
+			productReference = 04570C20EB0D9FBD4C649D2D /* Monastery360.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		78A861B8DCCB0C57EF5EE833 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					73CB11B9781B7AEE4C914D75 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 9D609534E69D5C384AC98300 /* Build configuration list for PBXProject "Monastery360" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 2FBF9ADE649F3A77A93608BD;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				9C3068BC332755CB55187B47 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				73CB11B9781B7AEE4C914D75 /* Monastery360 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FDED92119B07EFC11EA4F715 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE158EC676244E001C460186 /* AboutView.swift in Sources */,
+				6A109B425F3D10CFDCD15CF4 /* AnalyticsService.swift in Sources */,
+				1350FE86D58088477FADF061 /* AppState.swift in Sources */,
+				864A9F5990DBB66A262FE907 /* AuthSelectionView.swift in Sources */,
+				F6783B6E6FD261028115178C /* AuthService.swift in Sources */,
+				DE2849F36CA3C25EC7003FA2 /* Color+DesignToken.swift in Sources */,
+				BE83E227201B3E5751B4FD6F /* DIContainer.swift in Sources */,
+				0051C3FE4A21B0906B20A9D5 /* Dimens+DesignToken.swift in Sources */,
+				E66F77867319FEE903A35B9F /* DiscoveryView.swift in Sources */,
+				3AE35EFCAE74124AF3B0B8A4 /* EmptyStateView.swift in Sources */,
+				5BC3936706B278ED2F5DAC12 /* Experience360View.swift in Sources */,
+				BD12E60B1059F18A6B7ACCC1 /* FirestoreService.swift in Sources */,
+				45728B91E6071362AFEE6D95 /* Font+DesignToken.swift in Sources */,
+				584B98611056BB8695ED5367 /* GlobalConfigService.swift in Sources */,
+				6667C808CF78A7F3B3E3D051 /* HomeComponents.swift in Sources */,
+				A6DD960FCE75C3A2112F1582 /* HomeView.swift in Sources */,
+				A6A13DAD64BF65766E6FBE64 /* LocationService.swift in Sources */,
+				EA5E18B9D6C038CA5AF2729F /* M360Button.swift in Sources */,
+				5C73C23368EF1303BF4DCC0A /* M360TextField.swift in Sources */,
+				D7BE89625549E8581111A4DE /* M360Toggle.swift in Sources */,
+				D7BF554284E461B21D3FFD3A /* MainTabView.swift in Sources */,
+				F2FF9365AD626C7AB0CAE6F4 /* MapView.swift in Sources */,
+				C1A5D3E87E7BE393B6CCBDD4 /* Monastery.swift in Sources */,
+				4C8DA7FC2DCF12F55B417632 /* Monastery360App.swift in Sources */,
+				F64599C40D6A223590CE1443 /* MonasteryComponents.swift in Sources */,
+				3AE6CE957C0EC919DA5CEEF0 /* MonasteryDetailView.swift in Sources */,
+				45C93DC11C0325E6FBA4DE11 /* MonasteryPreviewCard.swift in Sources */,
+				D112A020992FF96868EFD9F8 /* MonasteryRepository.swift in Sources */,
+				61EE9D39D311247F4E9AED3D /* OfflineManager.swift in Sources */,
+				28600F1EB2F46758848E41CC /* OfflineStorageView.swift in Sources */,
+				3BF46D836CDC44831101B242 /* OnboardingView.swift in Sources */,
+				9218900A95078B8890862AF7 /* PanoramaView.swift in Sources */,
+				F2477E4731D47EAD76F287B9 /* PermissionPrimingView.swift in Sources */,
+				1CD0D9D239E7244CC170735A /* ProfileView.swift in Sources */,
+				41C9985BB564670EAE5E36CD /* RootView.swift in Sources */,
+				30DE7A2A1D5848A70411C293 /* Router.swift in Sources */,
+				CE0E10FC78DE5B277B1376A3 /* SavedView.swift in Sources */,
+				BA6E3B6183558C9A55F73156 /* ServiceStubs.swift in Sources */,
+				AC56EF655D482270BAD6B758 /* SettingsView.swift in Sources */,
+				C90E77F4D6F61A4AF41E3402 /* SplashView.swift in Sources */,
+				652F3AEAC9A77B5D4BF1A871 /* StorageService.swift in Sources */,
+				0D0AE68210CFA3D999DD82D5 /* TenantService.swift in Sources */,
+				C481EBBD6A0299DB7D1DAF3A /* ToastView.swift in Sources */,
+				7812B5824F869766D14FECA2 /* User.swift in Sources */,
+				BBC07A88FCEFB367E83C0FE5 /* View+Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		023687FD5900424D101D6021 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Monastery360/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.monastery360.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				currentProjectVersion = 1;
+				marketingVersion = 1.0.0;
+			};
+			name = Debug;
+		};
+		5F6549D06008366F393EB745 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A71C9A9741F59B5D8862893B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Monastery360/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.monastery360.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				currentProjectVersion = 1;
+				marketingVersion = 1.0.0;
+			};
+			name = Release;
+		};
+		CFC5954BD55E897B4BFA5F46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		42CB370319DFC778C6528CB7 /* Build configuration list for PBXNativeTarget "Monastery360" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				023687FD5900424D101D6021 /* Debug */,
+				A71C9A9741F59B5D8862893B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9D609534E69D5C384AC98300 /* Build configuration list for PBXProject "Monastery360" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F6549D06008366F393EB745 /* Debug */,
+				CFC5954BD55E897B4BFA5F46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9C3068BC332755CB55187B47 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		072CC00C73DCB2D792CD78C2 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C3068BC332755CB55187B47 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		74198607866C61C59BA5C493 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C3068BC332755CB55187B47 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		8E80D026FAE0FBFD16F2B0E2 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C3068BC332755CB55187B47 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		F4469BA6D47E18E7A0665234 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C3068BC332755CB55187B47 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 78A861B8DCCB0C57EF5EE833 /* Project object */;
+}

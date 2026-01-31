@@ -1,0 +1,36 @@
+name: Monastery360
+options:
+  bundleIdPrefix: com.monastery360
+  deploymentTarget:
+    iOS: 17.0
+  groupSortPosition: top
+  xcodeVersion: 15.0
+targets:
+  Monastery360:
+    type: application
+    platform: iOS
+    deploymentTarget: 17.0
+    sources:
+      - path: App
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.monastery360.app
+        INFOPLIST_FILE: Monastery360/Info.plist
+        DEVELOPMENT_TEAM: "" # User to fill if needed, or automatic
+        CODE_SIGN_STYLE: Automatic
+        marketingVersion: 1.0.0
+        currentProjectVersion: 1
+    dependencies:
+      - package: Firebase
+        product: FirebaseAuth
+      - package: Firebase
+        product: FirebaseFirestore
+      - package: Firebase
+        product: FirebaseFirestoreSwift
+      - package: Firebase
+        product: FirebaseStorage
+      # - package: SDWebImage # Often useful, but sticking to prompt "Firebase ONLY" unless specifically needed for caching images efficiently - sticking to native AsyncImage for now or custom cache.
+packages:
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk
+    from: 10.0.0
