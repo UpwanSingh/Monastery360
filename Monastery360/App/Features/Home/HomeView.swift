@@ -89,7 +89,10 @@ struct HomeView: View {
                     MonasteryDetailView(monasteryId: id)
                 case .experience360(let id):
                     Experience360View(monasteryId: id)
-                    Text("Placeholder for \(String(describing: dest))")
+                case .map(let focusId):
+                    MapView(focusMonasteryId: focusId)
+                default:
+                    Text("Unknown Route")
                 }
             }
         }

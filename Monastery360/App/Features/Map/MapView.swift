@@ -6,6 +6,7 @@ struct MapView: View {
     @State private var monasteries: [Monastery] = []
     @State private var repo = MonasteryRepository()
     @Environment(Router.self) var router
+    var focusMonasteryId: String? = nil
     
     var body: some View {
         ZStack(alignment: .bottom) {

@@ -26,7 +26,7 @@ struct OfflineStorageView: View {
                     Text("No downloaded content")
                         .foregroundStyle(Color.Text.secondary)
                 } else {
-                    ForEach(Array(offlineManager.downloadedContent), id: \.self) { id in
+                    ForEach(Array(offlineManager.downloadedContent).sorted(), id: \.self) { id in
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(id) // Ideally fetch Name
@@ -40,7 +40,7 @@ struct OfflineStorageView: View {
                                 offlineManager.removeContent(for: id)
                             }) {
                                 Image(systemName: "trash")
-                                    .foregroundStyle(Color.state.error)
+                                    .foregroundStyle(Color.State.error)
                             }
                         }
                     }
@@ -51,7 +51,7 @@ struct OfflineStorageView: View {
                 Button("Clear All Downloads") {
                     // Action
                 }
-                .foregroundStyle(Color.state.error)
+                .foregroundStyle(Color.State.error)
             }
         }
         .navigationTitle("Offline Storage")

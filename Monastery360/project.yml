@@ -12,10 +12,11 @@ targets:
     deploymentTarget: 18.0
     sources:
       - path: App
+      - path: GoogleService-Info.plist
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.monastery360.app
-        INFOPLIST_FILE: Monastery360/Info.plist
+        INFOPLIST_FILE: Info.plist
         DEVELOPMENT_TEAM: "" # User to fill if needed, or automatic
         CODE_SIGN_STYLE: Automatic
         marketingVersion: 1.0.0

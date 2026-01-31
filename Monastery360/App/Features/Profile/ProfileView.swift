@@ -29,7 +29,7 @@ struct ProfileView: View {
                         appState.isAuthenticated = false
                         appState.currentRoute = .authSelection
                     }
-                    .foregroundStyle(Color.state.error)
+                    .foregroundStyle(Color.State.error)
                 }
             }
         }

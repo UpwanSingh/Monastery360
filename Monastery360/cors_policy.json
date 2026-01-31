@@ -1,8 +1,0 @@
-[
-  {
-    "allowedOrigins": ["*"],
-    "allowedMethods": ["GET", "HEAD"],
-    "allowedHeaders": [],
-    "maxAgeSeconds": 3600
-  }
-]

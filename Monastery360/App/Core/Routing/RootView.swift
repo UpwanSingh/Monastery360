@@ -25,9 +25,4 @@ struct RootView: View {
     }
 }
 
-// Temporary placeholder for MainTab to allow compilation
-struct MainTabView: View {
-    var body: some View {
-        Text("Main Tab - Home")
-    }
-}
+

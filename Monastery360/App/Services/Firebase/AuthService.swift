@@ -5,7 +5,7 @@ import FirebaseFirestore
 @Observable
 class AuthService {
     
-    var user: User?
+    var user: FirebaseAuth.User?
     var isLoading: Bool = false
     var error: Error?
     
@@ -41,7 +41,7 @@ class AuthService {
     
     // MARK: - Internal
     
-    private func syncUserDocument(user: User) {
+    private func syncUserDocument(user: FirebaseAuth.User) {
         // In a real app, check if doc exists, if not create it at /users/{uid}
         // This ensures the "User record created" requirement is met.
         let db = Firestore.firestore()
