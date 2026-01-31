@@ -16,7 +16,8 @@ class DIContainer {
     let locationService: LocationService
     
     // Configuration
-    var activeTenantId: String = "sikkim_tourism" // Default fallback for MVP/Guest
+    // Configuration
+    var activeTenantId: String = AppConstants.Config.defaultTenantId // Default fallback for MVP/Guest
     
     init() {
         // Initialize services

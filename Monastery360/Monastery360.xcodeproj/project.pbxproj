@@ -20,6 +20,7 @@
 		41C9985BB564670EAE5E36CD /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B44DD06D55DDC104A3E70B /* RootView.swift */; };
 		45728B91E6071362AFEE6D95 /* Font+DesignToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = D725FCFBF02E2CBD0D882C68 /* Font+DesignToken.swift */; };
 		45C93DC11C0325E6FBA4DE11 /* MonasteryPreviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907AD1F8BA9F1540EAF2FDE5 /* MonasteryPreviewCard.swift */; };
+		468528AEF1623F7DA1B3A30B /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873EBE9FFFEDDB609A8DB09F /* AppConstants.swift */; };
 		4A11F2A0B885A8AEEBBBC85C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 072CC00C73DCB2D792CD78C2 /* FirebaseStorage */; };
 		4C8DA7FC2DCF12F55B417632 /* Monastery360App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C3F5F1B42DC3E989B357FA /* Monastery360App.swift */; };
 		584B98611056BB8695ED5367 /* GlobalConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B734117D151B78BE6D52CB4C /* GlobalConfigService.swift */; };
@@ -81,6 +82,7 @@
 		74B39ACCF1247D7829DC2055 /* TenantService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantService.swift; sourceTree = "<group>"; };
 		7974960EFB487F8EFB740E8B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		873232AE930B1E2211DFDE96 /* OfflineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineManager.swift; sourceTree = "<group>"; };
+		873EBE9FFFEDDB609A8DB09F /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		87A45835068E330ABCDF4AD7 /* M360Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M360Button.swift; sourceTree = "<group>"; };
 		8D4F283BF368AF806F7356B0 /* PanoramaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaView.swift; sourceTree = "<group>"; };
 		907AD1F8BA9F1540EAF2FDE5 /* MonasteryPreviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonasteryPreviewCard.swift; sourceTree = "<group>"; };
@@ -183,6 +185,14 @@
 			);
 			sourceTree = "<group>";
 		};
+		3A7B8A12E15F616DAB8D34C3 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				873EBE9FFFEDDB609A8DB09F /* AppConstants.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		43824059B094F6943F1E5C32 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				E5E388EB9A56325D27178756 /* AppState */,
+				3A7B8A12E15F616DAB8D34C3 /* Config */,
 				597A847775379E25DD65CEC1 /* DependencyInjection */,
 				B1D562AD509838E145CF08F8 /* Routing */,
 			);
@@ -451,6 +462,7 @@
 			files = (
 				CE158EC676244E001C460186 /* AboutView.swift in Sources */,
 				6A109B425F3D10CFDCD15CF4 /* AnalyticsService.swift in Sources */,
+				468528AEF1623F7DA1B3A30B /* AppConstants.swift in Sources */,
 				1350FE86D58088477FADF061 /* AppState.swift in Sources */,
 				864A9F5990DBB66A262FE907 /* AuthSelectionView.swift in Sources */,
 				F6783B6E6FD261028115178C /* AuthService.swift in Sources */,
@@ -508,7 +520,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Monastery360/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -572,7 +584,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -592,7 +604,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Monastery360/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -650,7 +662,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

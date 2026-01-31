@@ -2,14 +2,14 @@ name: Monastery360
 options:
   bundleIdPrefix: com.monastery360
   deploymentTarget:
-    iOS: 17.0
+    iOS: 18.0
   groupSortPosition: top
   xcodeVersion: 15.0
 targets:
   Monastery360:
     type: application
     platform: iOS
-    deploymentTarget: 17.0
+    deploymentTarget: 18.0
     sources:
       - path: App
     settings:
