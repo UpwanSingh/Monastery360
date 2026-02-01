@@ -65,17 +65,37 @@ struct PanoramaView: UIViewRepresentable {
         
         func loadImage(url: URL) {
             currentUrl = url
-            // In production, use SDWebImage or custom cache to download Image
-            // Mocking texture load for Phase 3 code structure
-            print("Loading texture from: \(url)")
+            print("Loading 360 texture from: \(url)")
             
-            // Simulating image load
-            DispatchQueue.global().async {
-                // let image = DownloadedImage...
-                DispatchQueue.main.async {
-                    // self.sphereNode?.geometry?.firstMaterial?.diffuse.contents = image
+            // Case 1: Offline / Local File
+            if url.isFileURL {
+                if let image = UIImage(contentsOfFile: url.path) {
+                    DispatchQueue.main.async {
+                        self.sphereNode?.geometry?.firstMaterial?.diffuse.contents = image
+                    }
+                } else {
+                    print("Error: Could not load local 360 file at \(url.path)")
                 }
+                return
             }
+            
+            // Case 2: Remote URL
+            URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+                if let error = error {
+                    print("Error loading 360 texture: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let self = self, let data = data, let image = UIImage(data: data) else {
+                    print("Error: Invalid data or image format for 360 texture")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    // Apply texture to inner sphere surface
+                    self.sphereNode?.geometry?.firstMaterial?.diffuse.contents = image
+                }
+            }.resume()
         }
         
         func updateMotion(enabled: Bool, manager: CMMotionManager) {

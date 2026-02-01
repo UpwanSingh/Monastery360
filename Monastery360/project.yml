@@ -30,6 +30,8 @@ targets:
         product: FirebaseFirestoreSwift
       - package: Firebase
         product: FirebaseStorage
+      - package: Firebase
+        product: FirebaseAnalytics
       # - package: SDWebImage # Often useful, but sticking to prompt "Firebase ONLY" unless specifically needed for caching images efficiently - sticking to native AsyncImage for now or custom cache.
 packages:
   Firebase:

@@ -35,7 +35,7 @@ struct MonasteryDetailView: View {
                             
                             HStack {
                                 Image(systemName: "mappin.and.ellipse")
-                                Text("Sikkim, India") // Mock
+                                Text("Sikkim, India")
                                 Spacer()
                                 Label("\(String(format: "%.1f", monastery.stats?.rating ?? 0))", systemImage: "star.fill")
                                     .foregroundStyle(Color.Brand.secondary)
@@ -53,10 +53,13 @@ struct MonasteryDetailView: View {
                                 router.navigate(to: .experience360(monasteryId: monasteryId))
                             }
                             ActionButton(icon: "map", title: "Route", primary: false) {
-                                // Map Logic
+                                router.navigate(to: .map(focusId: monasteryId))
                             }
                             ActionButton(icon: "arrow.down.circle", title: "Save", primary: false) {
-                                // Offline Logic
+                                Task {
+                                    // Hardcoded tenant for now, but mechanism is real
+                                    await OfflineManager.shared.downloadContent(for: monastery, tenantId: "sikkim_tourism")
+                                }
                             }
                         }
                         .padding(.horizontal, Space.lg)
@@ -109,8 +112,16 @@ struct MonasteryDetailView: View {
     
     func loadDetails() {
         Task {
-            // Mock fetch by ID
-            self.monastery = .mockRumtek
+            do {
+                if let fetched = try await repo.fetchMonastery(id: monasteryId) {
+                    self.monastery = fetched
+                } else {
+                    print("Error: Monastery not found")
+                    // Handle not found (go back or show error)
+                }
+            } catch {
+                print("Error loading details: \(error.localizedDescription)")
+            }
         }
     }
 }

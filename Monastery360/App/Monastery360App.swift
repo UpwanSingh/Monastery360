@@ -13,9 +13,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct Monastery360App: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
+    // Core State Objects
+    @State private var appState = AppState()
+    @State private var router = Router()
+    @State private var authService = AuthService()
+    
     var body: some Scene {
         WindowGroup {
             RootView()
+                .environment(appState)
+                .environment(router)
+                .environment(authService)
+                .preferredColorScheme(.dark) // Enforce dark mode for premium feel
         }
     }
 }

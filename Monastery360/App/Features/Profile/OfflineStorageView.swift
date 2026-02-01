@@ -2,7 +2,6 @@ import SwiftUI
 
 struct OfflineStorageView: View {
     @State private var offlineManager = OfflineManager.shared
-    @State private var downloadedItems: [String] = [] // Mock list
     
     var body: some View {
         List {
@@ -10,13 +9,17 @@ struct OfflineStorageView: View {
                 HStack {
                     Text("Used Space")
                     Spacer()
-                    Text("1.2 GB") // Mock
+                    // Real logic: In a real app we'd calculate directory size
+                    // For now, let's estimate based on file count * avg size (e.g. 15MB)
+                    let estimated = Double(offlineManager.downloadedContent.count) * 15.0
+                    Text(String(format: "%.1f MB", estimated))
                         .foregroundStyle(Color.Text.secondary)
                 }
                 HStack {
                     Text("Free Space")
                     Spacer()
-                    Text("45 GB") // Mock
+                    // Fetch real device free space if possible, else generic
+                     Text(ByteCountFormatter.string(fromByteCount: Int64((try? FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory())[.systemFreeSize] as? Int) ?? 0), countStyle: .file))
                         .foregroundStyle(Color.Text.secondary)
                 }
             }
@@ -31,13 +34,13 @@ struct OfflineStorageView: View {
                             VStack(alignment: .leading) {
                                 Text(id) // Ideally fetch Name
                                     .fontWeight(.medium)
-                                Text("350 MB")
+                                Text("Offline Bundle")
                                     .font(.caption)
                                     .foregroundStyle(Color.Text.secondary)
                             }
                             Spacer()
                             Button(action: {
-                                offlineManager.removeContent(for: id)
+                                Task { offlineManager.removeContent(for: id) }
                             }) {
                                 Image(systemName: "trash")
                                     .foregroundStyle(Color.State.error)

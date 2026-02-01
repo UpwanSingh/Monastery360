@@ -1,4 +1,5 @@
 import SwiftUI
+import Observation
 
 struct DiscoveryView: View {
     @Environment(Router.self) var router
@@ -13,57 +14,60 @@ struct DiscoveryView: View {
     @State private var repo = MonasteryRepository()
     
     var body: some View {
-        VStack(spacing: 0) {
-            // 1. Search Bar
-            HStack {
-                Image(systemName: "magnifyingglass")
-                    .foregroundStyle(Color.Text.secondary)
-                TextField("Search temples, history...", text: $searchText)
-                    .foregroundStyle(Color.Text.primary)
-                if !searchText.isEmpty {
-                    Button(action: { searchText = "" }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(Color.Text.secondary)
-                    }
-                }
-                Image(systemName: "mic.fill")
-                    .foregroundStyle(Color.Brand.tertiary)
-            }
-            .padding()
-            .background(Color.Surface.interaction)
-            .cornerRadius(Radius.pill)
-            .padding(Space.lg)
-            
-            // 2. Filter Ribbon
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: Space.sm) {
-                    ForEach(filters, id: \.self) { filter in
-                        FilterChip(label: filter, isSelected: activeFilter == filter) {
-                            activeFilter = filter
-                            filterData()
+        NavigationStack(path: Bindable(router).discoveryPath) {
+            VStack(spacing: 0) {
+                // 1. Search Bar
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundStyle(Color.Text.secondary)
+                    TextField("Search temples, history...", text: $searchText)
+                        .foregroundStyle(Color.Text.primary)
+                    if !searchText.isEmpty {
+                        Button(action: { searchText = "" }) {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundStyle(Color.Text.secondary)
                         }
                     }
+                    Image(systemName: "mic.fill")
+                        .foregroundStyle(Color.Brand.tertiary)
                 }
-                .padding(.horizontal, Space.lg)
-            }
-            .padding(.bottom, Space.md)
-            
-            // 3. List
-            List {
-                ForEach(monasteries) { item in
-                    DiscoveryRow(monastery: item)
-                        .listRowSeparator(.hidden)
-                        .listRowBackground(Color.clear)
-                        .onTapGesture {
-                            router.navigate(to: .monasteryDetail(id: item.id ?? ""))
+                .padding()
+                .background(Color.Surface.interaction)
+                .cornerRadius(Radius.pill)
+                .padding(Space.lg)
+                
+                // 2. Filter Ribbon
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: Space.sm) {
+                        ForEach(filters, id: \.self) { filter in
+                            FilterChip(label: filter, isSelected: activeFilter == filter) {
+                                activeFilter = filter
+                                filterData()
+                            }
                         }
+                    }
+                    .padding(.horizontal, Space.lg)
                 }
+                .padding(.bottom, Space.md)
+                
+                // 3. List
+                List {
+                    ForEach(monasteries) { item in
+                        DiscoveryRow(monastery: item)
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.clear)
+                            .onTapGesture {
+                                router.navigate(to: .monasteryDetail(id: item.id ?? ""))
+                            }
+                    }
+                }
+                .listStyle(.plain)
             }
-            .listStyle(.plain)
-        }
-        .background(Color.Surface.base)
-        .onAppear {
-            loadData()
+            .background(Color.Surface.base)
+            .onAppear {
+                loadData()
+            }
+            .withRouteHandler()
         }
     }
     
@@ -74,7 +78,7 @@ struct DiscoveryView: View {
     }
     
     func filterData() {
-        // Mock filter logic
+        // Local filtering of fetched dataset
         if activeFilter == "All" {
             loadData()
         } else {

@@ -3,18 +3,32 @@ import SwiftUI
 struct Experience360View: View {
     let monasteryId: String
     @Environment(Router.self) var router
+    private let repository = MonasteryRepository() // Direct instantiation as per pattern, or inject via DI if strictly needed.
+    
     @State private var isGyroEnabled = true
     @State private var showInfo = false
+    @State private var url: URL?
+    @State private var monastery: Monastery?
+    @State private var isLoading = true
     
     var body: some View {
         ZStack {
             // 1. 360 Canvas
-            PanoramaView(
-                imageUrl: URL(string: "https://example.com/pano.jpg"), // Placeholder
-                isGyroEnabled: $isGyroEnabled
-            )
-            .ignoresSafeArea()
+            if let url = url {
+                PanoramaView(
+                    imageUrl: url,
+                    isGyroEnabled: $isGyroEnabled
+                )
+                .ignoresSafeArea()
+            } else if isLoading {
+                ProgressView()
+                    .tint(.white)
+            } else {
+                ContentUnavailableView("Panorama Not Available", systemImage: "photo.badge.exclamationmark")
+                    .foregroundStyle(.white)
+            }
             
+            // ... strict fetch on appear
             // 2. HUD - Top
             VStack {
                 HStack {
@@ -26,7 +40,7 @@ struct Experience360View: View {
                     }
                     Spacer()
                     
-                    Text("Main Prayer Hall") // Dynamic Scene Name
+                    Text(monastery?.name.en ?? "Loading...") // Dynamic Scene Name
                         .style(Typography.h3)
                         .foregroundStyle(.white)
                         .shadow(radius: 2)
@@ -64,13 +78,33 @@ struct Experience360View: View {
         .navigationBarHidden(true)
         .sheet(isPresented: $showInfo) {
             VStack(spacing: Space.lg) {
-                Text("About this Scene").style(Typography.h2)
-                Text("This is the main prayer hall where monks gather twice daily...")
+                Text(monastery?.name.en ?? "Scene Info").style(Typography.h2)
+                Text(monastery?.shortDesc ?? "Loading details...")
                     .style(Typography.bodyMd)
                 Spacer()
             }
             .padding(Space.lg)
             .presentationDetents([.medium, .fraction(0.3)])
+        }
+        .onAppear {
+            loadPanorama()
+        }
+    }
+    
+    private func loadPanorama() {
+        Task {
+            do {
+                if let fetched = try await repository.fetchMonastery(id: monasteryId) {
+                    self.monastery = fetched
+                    if let stringUrl = fetched.panoramaUrl, let u = URL(string: stringUrl) {
+                        self.url = u
+                    }
+                }
+                isLoading = false
+            } catch {
+                print("Failed to load 360 data: \(error)")
+                isLoading = false
+            }
         }
     }
 }

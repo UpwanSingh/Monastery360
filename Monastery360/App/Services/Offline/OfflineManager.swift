@@ -14,37 +14,53 @@ class OfflineManager {
     var isDownloading: Bool = false
     var progress: Double = 0.0
     
-    func downloadContent(for monasteryId: String, tenantId: String) async {
+    func downloadContent(for monastery: Monastery, tenantId: String) async {
         isDownloading = true
         progress = 0.0
         
-        // 1. Determine assets to download (Mock list for MVP)
-        // In a real app, we'd fetch the Monastery object first to get the list of paths.
-        // Paths match Storage: tenants/{tenantId}/monasteries/{monasteryId}/...
+        // 1. Determine assets to download dynamically
+        var assets: [String] = []
         
-        let assets = [
-            "hero.webp",
-            "gallery/1.webp",
-            "360/main.webp"
-        ]
+        // Helper to extract path from URL (naive implementation for "Strict" requirement)
+        // In production, we'd store the storage PATH in Firestore, not just the download URL.
+        // Assuming models hold relative paths would be cleaner, but given we have URLs:
+        // We will attempt to parse the path or just use the filename if the architecture defines a strict folder structure.
+        // Strict Rule: stored as tenants/{tenantId}/monasteries/{monasteryId}/{filename}
+        
+        // For this implementation, we assume the URL contains the filename at the end
+        // AND that the file exists at the standard path constructed below.
+        
+        if !monastery.thumbnailUrl.isEmpty { assets.append("hero.webp") } // Standard name convention
+        if let pano = monastery.panoramaUrl, !pano.isEmpty { assets.append("360/main.webp") }
+        if let galleries = monastery.galleryUrls {
+            for (index, _) in galleries.enumerated() {
+                assets.append("gallery/\(index + 1).webp")
+            }
+        }
         
         let total = Double(assets.count)
+        if total == 0 { 
+            isDownloading = false
+            return 
+        }
+        
         var current = 0.0
         
         do {
             for assetName in assets {
                 // Construct Firebase Storage Path
-                // tenants/sikkim_tourism/monasteries/rumtek/hero.webp
-                let path = "tenants/\(tenantId)/monasteries/\(monasteryId)/\(assetName)"
+                let path = "tenants/\(tenantId)/monasteries/\(monastery.id ?? "unknown")/\(assetName)"
                 
                 let data = try await storageService.downloadData(path: path)
-                saveToDisk(data: data, monasteryId: monasteryId, filename: assetName)
+                saveToDisk(data: data, monasteryId: monastery.id ?? "unknown", filename: assetName)
                 
                 current += 1.0
                 progress = current / total
             }
             
-            downloadedContent.insert(monasteryId)
+            if let id = monastery.id {
+                downloadedContent.insert(id)
+            }
         } catch {
             print("Download failed: \(error)")
         }

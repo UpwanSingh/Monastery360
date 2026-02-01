@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Observation
 
 // MARK: - Dependency Container
 // Central hub for all services (Firebase, Auth, Location, Analytics)

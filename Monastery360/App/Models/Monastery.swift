@@ -8,7 +8,7 @@ import CoreLocation
 struct Monastery: Identifiable, Codable, Hashable {
     @DocumentID var id: String?
     let name: LocalizedString
-    let location: GeoPoint
+    let location: MonasteryLocation
     let geoHash: String
     let establishedYear: Int?
     let sectTradition: String? // "Karma Kagyu"
@@ -17,6 +17,7 @@ struct Monastery: Identifiable, Codable, Hashable {
     let architectureStyle: String?
     let tags: [String]
     let thumbnailUrl: String
+    let panoramaUrl: String? // Real 360 image URL
     let galleryUrls: [String]?
     let audioGuideUrl: String?
     let visitorInfo: VisitorInfo?
@@ -37,6 +38,7 @@ struct Monastery: Identifiable, Codable, Hashable {
         case architectureStyle = "architecture_style"
         case tags
         case thumbnailUrl = "thumbnail_url"
+        case panoramaUrl = "panorama_url"
         case galleryUrls = "gallery_urls"
         case audioGuideUrl = "audio_guide_url"
         case visitorInfo = "visitor_info"
@@ -57,7 +59,7 @@ struct LocalizedString: Codable, Hashable {
     let bo: String? // Bodyig / Tibetan
 }
 
-struct GeoPoint: Codable, Hashable {
+struct MonasteryLocation: Codable, Hashable {
     let lat: Double
     let lng: Double
 }

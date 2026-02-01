@@ -1,7 +1,9 @@
 import SwiftUI
+import Observation
 
 struct HomeView: View {
     @Environment(Router.self) var router
+    @Environment(AuthService.self) var authService
     @State private var repo = MonasteryRepository()
     
     @State private var featured: Monastery?
@@ -9,15 +11,16 @@ struct HomeView: View {
     @State private var popular: [Monastery] = []
     
     var body: some View {
-        NavigationStack(path: Bindable(router).path) {
+        NavigationStack(path: Bindable(router).homePath) {
             ScrollView {
+                // ... (Content)
                 VStack(spacing: Space.xl) {
                     
                     // 1. Header is custom, handled by parent or sticky if needed.
                     // For MVP simplicity, simple header:
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("Tashi Delek, User") // Mock user name
+                            Text("Tashi Delek, \(authService.user?.displayName ?? "Guest")")
                                 .style(Typography.h2)
                             Text(Date().formatted(date: .abbreviated, time: .omitted))
                                 .style(Typography.caption)
@@ -82,19 +85,7 @@ struct HomeView: View {
             .onAppear {
                 loadData()
             }
-            .navigationDestination(for: RouterDestination.self) { dest in
-                // Router Switching Logic
-                switch dest {
-                case .monasteryDetail(let id):
-                    MonasteryDetailView(monasteryId: id)
-                case .experience360(let id):
-                    Experience360View(monasteryId: id)
-                case .map(let focusId):
-                    MapView(focusMonasteryId: focusId)
-                default:
-                    Text("Unknown Route")
-                }
-            }
+            .withRouteHandler()
         }
     }
     

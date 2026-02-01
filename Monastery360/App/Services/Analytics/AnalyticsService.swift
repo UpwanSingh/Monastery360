@@ -1,22 +1,23 @@
-import Foundation
-
-// Placeholder for FirebaseAnalytics or custom logging
-// Keeps code decoupled from direct SDK calls
+import FirebaseAnalytics
 
 @Observable
 class AnalyticsService {
     
     func logEvent(_ name: String, parameters: [String: Any]? = nil) {
-        // Analytics.logEvent(name, parameters: parameters)
+        Analytics.logEvent(name, parameters: parameters)
+        #if DEBUG
         print("[Analytics] Event: \(name) Params: \(String(describing: parameters))")
+        #endif
     }
     
     func logScreen(_ name: String) {
-        // Analytics.logEvent(AnalyticsEventScreenView, ...)
-        print("[Analytics] Screen: \(name)")
+        Analytics.logEvent(AnalyticsEventScreenView, parameters: [
+            AnalyticsParameterScreenName: name,
+            AnalyticsParameterScreenClass: name
+        ])
     }
     
     func setUserProperty(_ value: String?, forName name: String) {
-        // Analytics.setUserProperty(value, forName: name)
+        Analytics.setUserProperty(value, forName: name)
     }
 }

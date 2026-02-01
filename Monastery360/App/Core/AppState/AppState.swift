@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Observation
 
 // MARK: - App State
 // Manages global state: Auth Status, Navigation Root, System Status
