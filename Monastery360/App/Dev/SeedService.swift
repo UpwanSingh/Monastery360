@@ -143,6 +143,73 @@ class SeedService {
                 ),
                 stats: MonasteryStats(views: 1100, rating: 5.0),
                 distance: nil
+            ),
+            
+            Monastery(
+                id: nil,
+                name: LocalizedString(en: "Ranka Monastery", bo: "རང་ཀ་དགོན་པ།"),
+                location: MonasteryLocation(lat: 27.3198, lng: 88.5833),
+                geoHash: "tunccx",
+                establishedYear: 1998,
+                sectTradition: "Karma Kagyu",
+                shortDesc: "A visually stunning monastery known for its intricate murals and serene atmosphere, also known as Lingdum Monastery.",
+                fullHistory: """
+                **Ranka Monastery**, also known as **Lingdum Monastery**, is located about 20 km from Gangtok. It is relatively new compared to other monasteries in Sikkim but is celebrated for its aesthetic beauty and vast courtyard.
+                
+                The monastery follows the Zurich tradition of the Karma Kagyu lineage. It has been a featured location in several Bollywood movies due to its spectacular architecture and scenic surroundings.
+                """,
+                architectureStyle: "Modern Tibetan",
+                tags: ["Kagyu", "Lingdum", "Movies", "Serene"],
+                thumbnailUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Lingdum_Monastery_Sikkim.jpg/1024px-Lingdum_Monastery_Sikkim.jpg",
+                panoramaUrl: nil,
+                galleryUrls: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Lingdum_Monastery_Sikkim.jpg/1024px-Lingdum_Monastery_Sikkim.jpg",
+                    "https://www.sikkimtourism.gov.in/Content/Images/Trekking/Ranka/1.jpg"
+                ],
+                audioGuideUrl: nil,
+                visitorInfo: VisitorInfo(
+                    openingTime: "06:00",
+                    closingTime: "18:00",
+                    bestTime: "All year round",
+                    entryFee: 0,
+                    rules: ["Maintain silence"],
+                    photographyRules: "Allowed in courtyard"
+                ),
+                stats: MonasteryStats(views: 720, rating: 4.7),
+                distance: nil
+            ),
+            
+            Monastery(
+                id: nil,
+                name: LocalizedString(en: "Phodong Monastery", bo: "ཕོག་མདོ་དགོན་པ།"),
+                location: MonasteryLocation(lat: 27.4172, lng: 88.5678),
+                geoHash: "tundxk",
+                establishedYear: 1740,
+                sectTradition: "Karma Kagyu",
+                shortDesc: "One of the six major monasteries in Sikkim, known for its beautiful murals.",
+                fullHistory: """
+                **Phodong Monastery** is located 38 km from Gangtok. It was built in the early 18th century by Chogyal Gyurmed Namgyal.
+                
+                The monastery belongs to the Karma Kagyu sect and is considered one of the six most important monasteries in Sikkim. It is famous for its ancient murals and hosting the annual Chaam dance.
+                """,
+                architectureStyle: "Traditional",
+                tags: ["Kagyu", "Ancient", "North Sikkim", "Murals"],
+                thumbnailUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Phodong_Monastery.jpg",
+                panoramaUrl: nil,
+                galleryUrls: [
+                    "https://upload.wikimedia.org/wikipedia/commons/e/e0/Phodong_Monastery.jpg"
+                ],
+                audioGuideUrl: nil,
+                visitorInfo: VisitorInfo(
+                    openingTime: "08:00",
+                    closingTime: "17:00",
+                    bestTime: "December for Festival",
+                    entryFee: 0,
+                    rules: ["Remove shoes"],
+                    photographyRules: "Restricted inside"
+                ),
+                stats: MonasteryStats(views: 640, rating: 4.5),
+                distance: nil
             )
         ]
         

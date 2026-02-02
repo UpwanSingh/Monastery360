@@ -3,6 +3,7 @@ import SwiftUI
 struct AboutView: View {
     @Environment(\.diContainer) var di
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+    @State private var showSeedAlert = false
 
     var body: some View {
         ScrollView {
@@ -68,6 +69,7 @@ struct AboutView: View {
                     Task {
                         try? await di.seedService.seedMonasteries()
                         print("Database seeded!")
+                        showSeedAlert = true
                     }
                 }) {
                     HStack {
@@ -77,6 +79,11 @@ struct AboutView: View {
                     .padding()
                     .background(Color.Surface.elevated)
                     .cornerRadius(Radius.md)
+                }
+                .alert("Seeding Complete", isPresented: $showSeedAlert) {
+                    Button("OK", role: .cancel) { }
+                } message: {
+                    Text("The database has been populated with real monastery data! 🏰")
                 }
                 
                 Spacer()
