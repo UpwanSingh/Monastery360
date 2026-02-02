@@ -38,7 +38,7 @@ struct HomeView: View {
                             Image(systemName: "bell.fill")
                                 .foregroundColor(Color.Text.primary)
                         }
-                        Button(action: { router.navigate(to: .profile) }) {
+                        Button(action: { router.selectedTab = .profile }) {
                              Image(systemName: "person.circle.fill")
                                 .font(.title)
                                 .foregroundColor(Color.Text.primary)
