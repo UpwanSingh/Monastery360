@@ -13,6 +13,8 @@ targets:
     sources:
       - path: App
       - path: GoogleService-Info.plist
+    entitlements:
+      path: Monastery360.entitlements
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.monastery360.app
