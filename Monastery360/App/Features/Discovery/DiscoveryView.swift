@@ -10,6 +10,7 @@ struct DiscoveryView: View {
     @State private var searchText = ""
     @State private var searchResults: [Monastery] = []
     @State private var monasteries: [Monastery] = []
+    @State private var showVoiceSearchAlert = false
     
     @State private var activeFilter: String = "All"
     
@@ -33,8 +34,10 @@ struct DiscoveryView: View {
                                 .foregroundStyle(Color.Text.secondary)
                         }
                     }
-                    Image(systemName: "mic.fill")
-                        .foregroundStyle(Color.Brand.tertiary)
+                    Button(action: { showVoiceSearchAlert = true }) {
+                        Image(systemName: "mic.fill")
+                            .foregroundStyle(Color.Brand.tertiary)
+                    }
                 }
                 .padding()
                 .background(Color.Surface.interaction)
@@ -92,6 +95,11 @@ struct DiscoveryView: View {
                 .listStyle(.plain)
             }
             .background(Color.Surface.base)
+            .alert("Voice Search", isPresented: $showVoiceSearchAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text("Voice search is coming in the next update! 🙏")
+            }
             .onAppear {
                 loadData()
             }
