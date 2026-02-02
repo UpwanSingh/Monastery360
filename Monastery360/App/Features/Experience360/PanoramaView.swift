@@ -29,6 +29,7 @@ struct PanoramaView: UIViewRepresentable {
         sphere.segmentCount = 48 // Smoother geometry
         sphere.firstMaterial?.cullMode = .front // Render inside faces
         sphere.firstMaterial?.isDoubleSided = false 
+        sphere.firstMaterial?.lightingModel = .constant // CRITICAL: Unlit texture for panorama
         sphere.firstMaterial?.diffuse.contents = UIColor.darkGray
         
         // Fix texture mapping - Flip UVs or Scale

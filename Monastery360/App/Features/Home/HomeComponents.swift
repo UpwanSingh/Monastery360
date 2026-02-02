@@ -8,13 +8,34 @@ struct FeaturedHeroCard: View {
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             // Background Image
-            Rectangle() // Placeholder for AsyncImage
-                .fill(Color.gray.opacity(0.3))
-                .overlay(
-                    Image(systemName: "photo")
-                        .font(.largeTitle)
-                        .foregroundStyle(.white)
-                )
+            if let url = URL(string: monastery.thumbnailUrl) {
+                AsyncImage(url: url) { phase in
+                    switch phase {
+                    case .empty:
+                        Rectangle().fill(Color.Surface.interaction)
+                            .overlay(ProgressView())
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    case .failure:
+                        Rectangle().fill(Color.gray.opacity(0.3))
+                            .overlay(Image(systemName: "photo").font(.largeTitle))
+                    @unknown default:
+                        EmptyView()
+                    }
+                }
+                .frame(width: nil, height: 250) // Allow width to expand
+                .clipped()
+            } else {
+                Rectangle()
+                    .fill(Color.gray.opacity(0.3))
+                    .overlay(
+                        Image(systemName: "photo")
+                            .font(.largeTitle)
+                            .foregroundStyle(.white)
+                    )
+            }
             
             // Gradient Overlay
             LinearGradient(
@@ -52,11 +73,25 @@ struct MonasteryCompactCard: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: Space.sm) {
-            Rectangle() // Placeholder
-                .fill(Color.gray.opacity(0.2))
-                .frame(width: 160, height: 120)
-                .cornerRadius(Radius.md)
-                .overlay(Text("Img").foregroundStyle(.secondary))
+            // Image
+            Group {
+                if let url = URL(string: monastery.thumbnailUrl) {
+                    AsyncImage(url: url) { phase in
+                        if let image = phase.image {
+                            image.resizable().aspectRatio(contentMode: .fill)
+                        } else if phase.error != nil {
+                             Rectangle().fill(Color.gray.opacity(0.2)).overlay(Image(systemName: "photo"))
+                        } else {
+                             Rectangle().fill(Color.Surface.interaction)
+                        }
+                    }
+                } else {
+                     Rectangle().fill(Color.gray.opacity(0.2)).overlay(Image(systemName: "photo"))
+                }
+            }
+            .frame(width: 160, height: 120)
+            .clipped()
+            .cornerRadius(Radius.md)
             
             Text(monastery.name.en)
                 .style(Typography.bodyLg)
@@ -66,7 +101,7 @@ struct MonasteryCompactCard: View {
             HStack(spacing: 4) {
                 Image(systemName: "mappin.circle.fill")
                     .font(.caption)
-                Text("2.4 km") // Mock distance
+                Text((monastery.distance != nil) ? String(format: "%.1f km", monastery.distance!) : "Sikkim")
                     .style(Typography.caption)
             }
             .foregroundStyle(Color.Text.secondary)
