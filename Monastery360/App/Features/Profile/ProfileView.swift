@@ -18,7 +18,7 @@ struct ProfileView: View {
                         .frame(width: 100, height: 100)
                         .overlay(Text(vm.userInitials).style(Typography.h2))
                     
-                    Text("Tashi Delek, \(vm.userName == "Guest" ? "Pilgrim" : vm.userName)")
+                    Text(vm.userName == "Guest" ? "Pilgrim" : vm.userName)
                         .style(Typography.h2)
                     
                     List {
