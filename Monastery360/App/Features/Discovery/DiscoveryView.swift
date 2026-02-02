@@ -9,7 +9,8 @@ struct DiscoveryView: View {
     
     @State private var searchText = ""
     @State private var searchResults: [Monastery] = []
-    @State private var monasteries: [Monastery] = []
+    @State private var allMonasteries: [Monastery] = [] // Master list
+    @State private var monasteries: [Monastery] = [] // Display list
     @State private var showVoiceSearchAlert = false
     
     @State private var activeFilter: String = "All"
@@ -50,49 +51,46 @@ struct DiscoveryView: View {
                         ForEach(filters, id: \.self) { filter in
                             FilterChip(label: filter, isSelected: activeFilter == filter) {
                                 activeFilter = filter
-                                filterData()
+                                applyFilters()
                             }
                         }
                     }
                     .padding(.horizontal, Space.lg)
                 }
-                .onChange(of: searchText) { _, newValue in
-                    if repo == nil {
-                        repo = MonasteryRepository(firestoreService: di.firestoreService, tenantService: di.tenantService)
-                    }
-                    
-                    guard !newValue.isEmpty, let repo = repo else {
-                        // Reset to all if cleared
-                        loadData()
-                        return
-                    }
-                    
-                    Task {
-                        do {
-                            let results = try await repo.search(query: newValue)
-                             await MainActor.run {
-                                 // Update main list to show results
-                                 self.monasteries = results
-                             }
-                        } catch {
-                            print("Search error: \(error)")
-                        }
-                    }
+                .onChange(of: searchText) { _, _ in
+                    applyFilters()
                 }
                 .padding(.bottom, Space.md)
                 
                 // 3. List
-                List {
-                    ForEach(monasteries) { item in
-                        DiscoveryRow(monastery: item)
-                            .listRowSeparator(.hidden)
-                            .listRowBackground(Color.clear)
-                            .onTapGesture {
-                                router.navigate(to: .monasteryDetail(id: item.id ?? ""))
-                            }
+                if monasteries.isEmpty {
+                     // Empty State
+                     VStack(spacing: Space.md) {
+                         Image(systemName: "magnifyingglass")
+                             .font(.largeTitle)
+                             .foregroundStyle(Color.Text.tertiary)
+                         Text("No monasteries found")
+                             .style(Typography.bodyMd)
+                             .foregroundStyle(Color.Text.secondary)
+                         Button("Reload Data") {
+                             loadData()
+                         }
+                         .foregroundColor(Color.Brand.primary)
+                     }
+                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    List {
+                        ForEach(monasteries) { item in
+                            DiscoveryRow(monastery: item)
+                                .listRowSeparator(.hidden)
+                                .listRowBackground(Color.clear)
+                                .onTapGesture {
+                                    router.navigate(to: .monasteryDetail(id: item.id ?? ""))
+                                }
+                        }
                     }
+                    .listStyle(.plain)
                 }
-                .listStyle(.plain)
             }
             .background(Color.Surface.base)
             .alert("Voice Search", isPresented: $showVoiceSearchAlert) {
@@ -101,6 +99,9 @@ struct DiscoveryView: View {
                 Text("Voice search is coming in the next update! 🙏")
             }
             .onAppear {
+                if repo == nil {
+                    repo = MonasteryRepository(firestoreService: di.firestoreService, tenantService: di.tenantService)
+                }
                 loadData()
             }
             .withRouteHandler()
@@ -108,27 +109,36 @@ struct DiscoveryView: View {
     }
     
     func loadData() {
+        guard let repo = repo else { return }
         Task {
-            if let repo = repo {
-                // Determine what to load based on active filter
-                if activeFilter == "All" {
-                     monasteries = (try? await repo.fetchAll()) ?? []
-                } else {
-                     // Fetch all and filter locally (repo.fetchAll is efficient for this dataset size)
-                     let all = (try? await repo.fetchAll()) ?? []
-                     monasteries = all.filter { $0.tags.contains(activeFilter.lowercased()) || ($0.sectTradition == activeFilter) }
+            do {
+                let items = try await repo.fetchAll()
+                await MainActor.run {
+                    self.allMonasteries = items
+                    applyFilters()
                 }
+            } catch {
+                print("Error loading discovery data: \(error)")
             }
         }
     }
     
-    func filterData() {
-        // Local filtering of fetched dataset
-        if activeFilter == "All" {
-            loadData()
-        } else {
-            monasteries = monasteries.filter { $0.tags.contains(activeFilter.lowercased()) || ($0.sectTradition == activeFilter) }
+    func applyFilters() {
+        var result = allMonasteries
+        
+        // 1. Text Search
+        if !searchText.isEmpty {
+            result = result.filter { $0.name.en.localizedCaseInsensitiveContains(searchText) }
         }
+        
+        // 2. Category Filter
+        if activeFilter != "All" {
+            result = result.filter { item in
+                 item.sectTradition == activeFilter || item.tags.contains(where: { $0.caseInsensitiveCompare(activeFilter) == .orderedSame })
+            }
+        }
+        
+        self.monasteries = result
     }
 }
 
