@@ -2,18 +2,18 @@ import SwiftUI
 
 struct MonasteryDetailView: View {
     let monasteryId: String
-    @Environment(Router.self) var router
-    @State private var monastery: Monastery?
-    @State private var selectedTab = 0
     
-    // Repository to fetch specific details
-    @State private var repo = MonasteryRepository()
+    @Environment(Router.self) var router
+    @Environment(\.diContainer) var di
+    
+    @State private var viewModel: MonasteryDetailViewModel?
+    @State private var selectedTab = 0
     
     var body: some View {
         ZStack(alignment: .topLeading) {
             Color.Surface.base.ignoresSafeArea()
             
-            if let monastery = monastery {
+            if let vm = viewModel, let monastery = vm.monastery {
                 ScrollView {
                     VStack(spacing: 0) {
                         // 1. Parallax Header Placeholder
@@ -45,9 +45,8 @@ struct MonasteryDetailView: View {
                         }
                         .padding(Space.lg)
                         .background(Color.Surface.base)
-                        // Sticky Header Logic usually involves GeometryReader, keeping simple for Phase 3 Codebase
                         
-                        // 3. Primary Actions (Sticky-ish)
+                        // 3. Primary Actions (Refactored to use ViewModel)
                         HStack(spacing: Space.md) {
                             ActionButton(icon: "camera.aperture", title: "360° Tour", primary: true) {
                                 router.navigate(to: .experience360(monasteryId: monasteryId))
@@ -55,10 +54,18 @@ struct MonasteryDetailView: View {
                             ActionButton(icon: "map", title: "Route", primary: false) {
                                 router.navigate(to: .map(focusId: monasteryId))
                             }
-                            ActionButton(icon: "arrow.down.circle", title: "Save", primary: false) {
+                            
+                            // Save Action
+                            let isSaved = vm.isSaved
+                            ActionButton(icon: isSaved ? "checkmark.circle.fill" : "arrow.down.circle", 
+                                       title: isSaved ? "Saved" : "Save", 
+                                       primary: false) {
                                 Task {
-                                    // Hardcoded tenant for now, but mechanism is real
-                                    await OfflineManager.shared.downloadContent(for: monastery, tenantId: "sikkim_tourism")
+                                    if isSaved {
+                                        vm.removeOffline()
+                                    } else {
+                                        await vm.saveOffline()
+                                    }
                                 }
                             }
                         }
@@ -91,8 +98,18 @@ struct MonasteryDetailView: View {
                     }
                 }
                 .ignoresSafeArea(edges: .top)
-            } else {
+            } else if viewModel?.isLoading == true {
                 ProgressView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else if let error = viewModel?.error {
+                VStack {
+                    Text("Error").font(Typography.h3)
+                    Text(error).font(Typography.bodyMd).foregroundStyle(Color.Text.secondary)
+                    Button("Retry") {
+                        Task { await viewModel?.loadMonastery(id: monasteryId) }
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             
             // Back Button Overlay
@@ -101,26 +118,22 @@ struct MonasteryDetailView: View {
                     .padding()
                     .background(.ultraThinMaterial, in: Circle())
                     .padding(.leading, Space.md)
-                    .padding(.top, 50) // Safe Area approximation
+                    .padding(.top, 50) 
             }
         }
         .navigationBarHidden(true)
         .onAppear {
-            loadDetails()
-        }
-    }
-    
-    func loadDetails() {
-        Task {
-            do {
-                if let fetched = try await repo.fetchMonastery(id: monasteryId) {
-                    self.monastery = fetched
-                } else {
-                    print("Error: Monastery not found")
-                    // Handle not found (go back or show error)
+            if viewModel == nil {
+                // Initialize ViewModel with dependencies from DI
+                // We create a new Repo instance here injecting the singletons/services
+                // Ideally Repo should also be a singleton or factory from DI, but this is a valid step.
+                let repo = MonasteryRepository(firestoreService: di.firestoreService, tenantService: di.tenantService)
+                let vm = MonasteryDetailViewModel(repository: repo, offlineManager: di.offlineManager, tenantService: di.tenantService)
+                self.viewModel = vm
+                
+                Task {
+                    await vm.loadMonastery(id: monasteryId)
                 }
-            } catch {
-                print("Error loading details: \(error.localizedDescription)")
             }
         }
     }

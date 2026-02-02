@@ -1,42 +1,41 @@
 import Foundation
 import FirebaseFirestore
 import CoreLocation
+import Observation
 
 @Observable
 class MonasteryRepository {
-    private let db = Firestore.firestore()
-    private let tenantService = DIContainer().tenantService // Access global or inject via init if possible. Using DIContainer() creates new instance which is bad if stateful, but TenantService is observable. Ideally pass in. 
-    // Correction: Router/Views create Repo. Better to rely on the active singleton or pass it. 
-    // For "Strict" correctness, we should assume the Repo is instantiated with dependencies or accesses the singleton.
+    // Dependencies injected via init
+    private let firestoreService: FirestoreService
+    private let tenantService: TenantService
     
-    // Using a simpler approach: Access the Tenant Key directly if Service isn't easily injectable here without large refactor.
-    // BUT user wants "Production Grade". 
-    // Let's use `DIContainer.shared` pattern if it existed, or just instantiate TenantService (it's lightweight).
-    // Better: Helper computed property to get ID.
-    
-    private var currentTenantId: String {
-        // In a real app, we'd inject this. For now, we instantiate to resolve.
-        // Or better, make DIContainer a Singleton access point as it was defined as static mock.
-        return "sikkim_tourism" // Strict default for now as we haven't refactored DI completely to be global.
-        // user requirement: "multitenant architecture". 
-        // We will stick to the literal string "sikkim_tourism" because that IS the tenant for this app instance, 
-        // but the ARCHITECTURE (collection path) is what matters.
+    init(firestoreService: FirestoreService, tenantService: TenantService) {
+        self.firestoreService = firestoreService
+        self.tenantService = tenantService
     }
     
+    // Computed property for readability
+    private var collectionPath: String {
+        return "tenants/\(tenantService.currentTenantId)/monasteries"
+    }
+    
+    // Direct db access is still needed until FirestoreService exposes a generic query interface.
+    // Ideally FirestoreService should wrap this, but for Phase 1 we just inject the service
+    // and access its db property if public, OR we use the service methods if available.
+    // Looking at common patterns, we often expose `db` or use generic fetch methods.
+    // Let's check FirestoreService first. If it's generic, we use it. If not, we fix it.
+    // For now, assuming FirestoreService exposes `db` or we use it to get collections.
+    
+    var db: Firestore { firestoreService.db }
+    
     func fetchMonastery(id: String) async throws -> Monastery? {
-        let docRef = db.collection("tenants")
-            .document(currentTenantId)
-            .collection("monasteries")
-            .document(id)
-        
+        let docRef = db.collection(collectionPath).document(id)
         let snapshot = try await docRef.getDocument()
         return try? snapshot.data(as: Monastery.self)
     }
     
     func fetchFeatured() async throws -> Monastery? {
-        let snapshot = try await db.collection("tenants")
-            .document(currentTenantId)
-            .collection("monasteries")
+        let snapshot = try await db.collection(collectionPath)
             .whereField("featured", isEqualTo: true)
             .limit(to: 1)
             .getDocuments()
@@ -46,9 +45,7 @@ class MonasteryRepository {
     
     func fetchNearby(lat: Double, lng: Double) async throws -> [Monastery] {
         // Real implementation: Fetch all and sort by distance locally (Production pattern for small datasets < 1000 docs)
-        let snapshot = try await db.collection("tenants")
-            .document(currentTenantId)
-            .collection("monasteries")
+        let snapshot = try await db.collection(collectionPath)
             .getDocuments()
             
         let all = snapshot.documents.compactMap { try? $0.data(as: Monastery.self) }
@@ -63,9 +60,7 @@ class MonasteryRepository {
     }
     
     func fetchPopular() async throws -> [Monastery] {
-         let snapshot = try await db.collection("tenants")
-            .document(currentTenantId)
-            .collection("monasteries")
+         let snapshot = try await db.collection(collectionPath)
             .order(by: "stats.views", descending: true)
             .limit(to: 5)
             .getDocuments()

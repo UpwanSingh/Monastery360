@@ -2,10 +2,10 @@ import SwiftUI
 
 @Observable
 class OfflineManager {
-    static let shared = OfflineManager()
+    // Static singleton REMOVED in favor of DI
     
     // Dependencies
-    private let storageService = StorageService()
+    private let storageService: StorageService
     
     // Track downloaded monastery IDs
     var downloadedContent: Set<String> = []
@@ -13,6 +13,10 @@ class OfflineManager {
     // Status
     var isDownloading: Bool = false
     var progress: Double = 0.0
+    
+    init(storageService: StorageService) {
+        self.storageService = storageService
+    }
     
     func downloadContent(for monastery: Monastery, tenantId: String) async {
         isDownloading = true

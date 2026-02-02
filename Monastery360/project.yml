@@ -33,6 +33,20 @@ targets:
       - package: Firebase
         product: FirebaseAnalytics
       # - package: SDWebImage # Often useful, but sticking to prompt "Firebase ONLY" unless specifically needed for caching images efficiently - sticking to native AsyncImage for now or custom cache.
+  Monastery360Tests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: 18.0
+    sources:
+      - path: App
+        excludes: ["**/*"] # Exclude app sources, we will just import the module
+      - path: Tests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.monastery360.tests
+        INFOPLIST_FILE: Tests/Info.plist
+    dependencies:
+      - target: Monastery360
 packages:
   Firebase:
     url: https://github.com/firebase/firebase-ios-sdk

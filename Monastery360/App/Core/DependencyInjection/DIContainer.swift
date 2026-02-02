@@ -8,29 +8,47 @@ import Observation
 @Observable
 class DIContainer {
     
-    // Services
-    let authService: AuthService
+    // Core Services
     let tenantService: TenantService
+    
+    // Feature Services (Lazy loaded or initialized with Core dependencies)
+    let authService: AuthService
     let firestoreService: FirestoreService
     let storageService: StorageService
     let analyticsService: AnalyticsService
     let locationService: LocationService
     
-    // Configuration
-    // Configuration
-    var activeTenantId: String = AppConstants.Config.defaultTenantId // Default fallback for MVP/Guest
+    // Offline Manager (Now managed heavily by DI)
+    let offlineManager: OfflineManager
     
     init() {
-        // Initialize services
+        // 1. Core Config
+        self.tenantService = TenantService()
+        
+        // 2. Base Services
         self.authService = AuthService()
         self.firestoreService = FirestoreService()
         self.storageService = StorageService()
         self.analyticsService = AnalyticsService()
         self.locationService = LocationService()
-        self.tenantService = TenantService(firestore: firestoreService)
+        
+        // 3. Dependent Services
+        // Injecting dependencies manually here
+        self.offlineManager = OfflineManager(storageService: self.storageService)
     }
     
-    static let mock = DIContainer() // For previews
+    // For Previews/Tests
+    init(mock: Bool) {
+        self.tenantService = TenantService(initialTenantId: "mock_tenant")
+        self.authService = AuthService()
+        self.firestoreService = FirestoreService()
+        self.storageService = StorageService()
+        self.analyticsService = AnalyticsService()
+        self.locationService = LocationService()
+        self.offlineManager = OfflineManager(storageService: self.storageService)
+    }
+    
+    static let preview = DIContainer(mock: true)
 }
 
 // Environment Key for SwiftUI Injection

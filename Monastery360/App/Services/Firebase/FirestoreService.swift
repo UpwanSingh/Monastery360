@@ -8,7 +8,7 @@ import FirebaseFirestoreSwift
 @Observable
 class FirestoreService {
     
-    private let db = Firestore.firestore()
+    let db = Firestore.firestore()
     
     // Core Fetch Method
     func getDocument<T: Decodable>(path: String, as type: T.Type) async throws -> T {
