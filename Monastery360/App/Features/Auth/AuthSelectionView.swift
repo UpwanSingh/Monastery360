@@ -61,7 +61,7 @@ struct AuthSelectionView: View {
                         .padding(.horizontal, 2) // Match M360Button padding hack if any
                         
                         // Google Sign In
-                        M360Button("Continue with Google", icon: "globe", style: .secondary, isLoading: vm.isLoading && vm.error == nil) {
+                        M360Button("Continue with Google", icon: "globe", style: .secondary, isLoading: vm.loadingState == .google) {
                             Task { await vm.signInWithGoogle() }
                         }
                         
@@ -72,7 +72,7 @@ struct AuthSelectionView: View {
 
                         
                         // Guest Mode
-                        M360Button("Continue as Guest", style: .text, isLoading: vm.isLoading) {
+                        M360Button("Continue as Guest", style: .text, isLoading: vm.loadingState == .guest) {
                             Task {
                                 if await vm.signInAnonymously() {
                                     appState.isAuthenticated = true
