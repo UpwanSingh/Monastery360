@@ -25,7 +25,7 @@ struct HomeView: View {
                     HStack {
                         VStack(alignment: .leading) {
                             // "Pilgrim" is more immersive than "Guest"
-                            Text(authService.user?.displayName ?? "Pilgrim")
+                            Text("Tashi Delek, \(authService.user?.displayName ?? "Pilgrim")")
                                 .style(Typography.h2)
                             Text(Date().formatted(date: .abbreviated, time: .omitted))
                                 .style(Typography.caption)
