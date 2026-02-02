@@ -9,11 +9,11 @@ struct AboutView: View {
             VStack(alignment: .leading, spacing: Space.lg) {
                 // Header
                 HStack {
-                    Image("bs_logo_small") // Assuming asset exists or use system
+                    Image(systemName: "building.columns.circle.fill")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 60, height: 60)
-                        .cornerRadius(Radius.md)
+                        .foregroundStyle(Color.Brand.primary)
                     
                     VStack(alignment: .leading) {
                         Text("Monastery360")
