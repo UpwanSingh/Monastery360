@@ -2,7 +2,9 @@ import SwiftUI
 
 struct AuthSelectionView: View {
     @Environment(AppState.self) var appState
-    @Environment(DIContainer.self) var di
+    @Environment(\.diContainer) var di
+    
+    @State private var viewModel: AuthViewModel?
     
     var body: some View {
         ZStack {
@@ -18,49 +20,67 @@ struct AuthSelectionView: View {
                 Spacer()
                 
                 VStack(spacing: Space.md) {
-                    // Apple Sign In (Placeholder Style)
-                    Button(action: {}) {
-                        HStack {
-                            Image(systemName: "apple.logo")
-                            Text("Continue with Apple")
+                    if let vm = viewModel, vm.isLoading {
+                        ProgressView()
+                            .tint(.white)
+                    } else {
+                        // Apple Sign In (Placeholder Style)
+                        Button(action: {}) {
+                            HStack {
+                                Image(systemName: "apple.logo")
+                                Text("Continue with Apple")
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.black)
+                            .foregroundStyle(.white)
+                            .cornerRadius(Radius.pill)
                         }
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.black)
-                        .foregroundStyle(.white)
-                        .cornerRadius(Radius.pill)
-                    }
-                    
-                    // Google Sign In (Placeholder Style)
-                    Button(action: {}) {
-                        HStack {
-                            Text("G")
-                                .bold()
-                            Text("Continue with Google")
+                        
+                        // Google Sign In (Placeholder Style)
+                        Button(action: {}) {
+                            HStack {
+                                Text("G")
+                                    .bold()
+                                Text("Continue with Google")
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundStyle(.white)
+                            .cornerRadius(Radius.pill)
                         }
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundStyle(.white)
-                        .cornerRadius(Radius.pill)
-                    }
-                    
-                    // Guest Mode
-                    Button(action: {
-                        Task {
-                            try? await di.authService.signInAnonymously()
-                            appState.isAuthenticated = true
-                            appState.currentRoute = .mainTab
+                        
+                        // Guest Mode
+                        Button(action: {
+                            Task {
+                                if await viewModel?.signInAnonymously() == true {
+                                    appState.isAuthenticated = true
+                                    appState.currentRoute = .mainTab
+                                }
+                            }
+                        }) {
+                            Text("Continue as Guest")
+                                .style(Typography.bodyMd)
+                                .foregroundStyle(Color.Text.secondary)
                         }
-                    }) {
-                        Text("Continue as Guest")
-                            .style(Typography.bodyMd)
-                            .foregroundStyle(Color.Text.secondary)
+                        .padding(.top, Space.sm)
+                        
+                        if let error = viewModel?.error {
+                            Text(error)
+                                .style(Typography.caption)
+                                .foregroundStyle(.red)
+                                .multilineTextAlignment(.center)
+                        }
                     }
-                    .padding(.top, Space.sm)
                 }
                 .padding(.horizontal, Space.xl)
                 .padding(.bottom, Space.xxl)
+            }
+        }
+        .onAppear {
+            if viewModel == nil {
+                self.viewModel = AuthViewModel(authService: di.authService)
             }
         }
     }

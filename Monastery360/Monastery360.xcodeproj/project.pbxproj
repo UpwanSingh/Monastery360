@@ -36,10 +36,12 @@
 		6A109B425F3D10CFDCD15CF4 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431B1F9B4675E71E8A68187D /* AnalyticsService.swift */; };
 		6AB5113DC932AFA09E05EE61 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F4469BA6D47E18E7A0665234 /* FirebaseFirestoreSwift */; };
 		70B26DD7324E65434EAA0438 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 74198607866C61C59BA5C493 /* FirebaseAuth */; };
+		73DD3FF04A7B0938B15AD73B /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293E5FA078A2E8A24DD1C6D0 /* AuthViewModel.swift */; };
 		7812B5824F869766D14FECA2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED69FA6C9AA677F74D2B15 /* User.swift */; };
 		7A168191BF0FA3C8B13FFD50 /* MonasteryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D70B92ECF1F8B195976A2A7 /* MonasteryDetailViewModel.swift */; };
 		84BE96E176F64B5C44CF3F31 /* Experience360ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF638138B6256191E4130C31 /* Experience360ViewModel.swift */; };
 		864A9F5990DBB66A262FE907 /* AuthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CC0C77FCECA2B467132F68 /* AuthSelectionView.swift */; };
+		87C31B255E5900A9FA0095A7 /* SavedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7C0FEA1EE1EE3405A585D2 /* SavedViewModel.swift */; };
 		8C905AF7AC1742BF1AAD5EF7 /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD65C2AA9B58AF29D71104C0 /* CardModifier.swift */; };
 		9218900A95078B8890862AF7 /* PanoramaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4F283BF368AF806F7356B0 /* PanoramaView.swift */; };
 		9EE5C920414108248298363C /* RouteHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B597E72C8BC16968521F6CD /* RouteHandler.swift */; };
@@ -92,7 +94,9 @@
 		1A197E58F7C5F1DA50711D26 /* View+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Style.swift"; sourceTree = "<group>"; };
 		1C396A0DBCB80D2DED94EBDD /* Color+DesignToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+DesignToken.swift"; sourceTree = "<group>"; };
 		2314C6A8FC34CBFE7AFA7513 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		293E5FA078A2E8A24DD1C6D0 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		2E9F6C2FEF561CD9BCF27859 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		2F7C0FEA1EE1EE3405A585D2 /* SavedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewModel.swift; sourceTree = "<group>"; };
 		3202ED19E094CA87E4079053 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		35A081DE6D2B61DF527D00A8 /* M360Toggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M360Toggle.swift; sourceTree = "<group>"; };
 		3E8CCFB0F15B2FEA26CABE66 /* MonasteryComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonasteryComponents.swift; sourceTree = "<group>"; };
@@ -295,9 +299,11 @@
 		791D39A682ACB9954E3D2F0A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				293E5FA078A2E8A24DD1C6D0 /* AuthViewModel.swift */,
 				AF638138B6256191E4130C31 /* Experience360ViewModel.swift */,
 				E73821542B32E34707B7E735 /* MapViewModel.swift */,
 				9D70B92ECF1F8B195976A2A7 /* MonasteryDetailViewModel.swift */,
+				2F7C0FEA1EE1EE3405A585D2 /* SavedViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -577,6 +583,7 @@
 				1350FE86D58088477FADF061 /* AppState.swift in Sources */,
 				864A9F5990DBB66A262FE907 /* AuthSelectionView.swift in Sources */,
 				F6783B6E6FD261028115178C /* AuthService.swift in Sources */,
+				73DD3FF04A7B0938B15AD73B /* AuthViewModel.swift in Sources */,
 				18F3032A537C11B66F952FDC /* ButtonModifier.swift in Sources */,
 				8C905AF7AC1742BF1AAD5EF7 /* CardModifier.swift in Sources */,
 				DE2849F36CA3C25EC7003FA2 /* Color+DesignToken.swift in Sources */,
@@ -615,6 +622,7 @@
 				9EE5C920414108248298363C /* RouteHandler.swift in Sources */,
 				30DE7A2A1D5848A70411C293 /* Router.swift in Sources */,
 				CE0E10FC78DE5B277B1376A3 /* SavedView.swift in Sources */,
+				87C31B255E5900A9FA0095A7 /* SavedViewModel.swift in Sources */,
 				AC56EF655D482270BAD6B758 /* SettingsView.swift in Sources */,
 				C90E77F4D6F61A4AF41E3402 /* SplashView.swift in Sources */,
 				652F3AEAC9A77B5D4BF1A871 /* StorageService.swift in Sources */,

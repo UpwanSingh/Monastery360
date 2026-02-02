@@ -104,6 +104,10 @@ class OfflineManager {
         return downloadedContent.contains(id)
     }
     
+    func getSavedIds() -> [String] {
+        return Array(downloadedContent)
+    }
+    
     // Helper to get local URL if exists
     func getLocalURL(for monasteryId: String, filename: String) -> URL? {
         guard let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
