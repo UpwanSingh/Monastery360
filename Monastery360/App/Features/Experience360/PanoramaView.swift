@@ -26,11 +26,19 @@ struct PanoramaView: UIViewRepresentable {
         
         // Setup Sphere
         let sphere = SCNSphere(radius: 10.0)
-        sphere.firstMaterial?.isDoubleSided = true // Important: View from inside
-        sphere.firstMaterial?.diffuse.contents = UIColor.darkGray // Loading State
+        sphere.segmentCount = 48 // Smoother geometry
+        sphere.firstMaterial?.cullMode = .front // Render inside faces
+        sphere.firstMaterial?.isDoubleSided = false 
+        sphere.firstMaterial?.diffuse.contents = UIColor.darkGray
+        
+        // Fix texture mapping - Flip UVs or Scale
+        // SceneKit spheres map textures to the outside. We are inside.
+        // Often we need to flip the X or adjust rotation.
         
         let sphereNode = SCNNode(geometry: sphere)
         sphereNode.position = SCNVector3(x: 0, y: 0, z: 0)
+        sphereNode.scale = SCNVector3(1, 1, -1) // Correct mirroring
+        sphereNode.eulerAngles.y = .pi // Rotate to face center of image
         scene.rootNode.addChildNode(sphereNode)
         
         context.coordinator.setup(sphereNode: sphereNode, cameraNode: cameraNode)
