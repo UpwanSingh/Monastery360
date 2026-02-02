@@ -27,6 +27,7 @@ class AuthService {
     
     // MARK: - Sign In Methods
     
+    @MainActor
     func signInWithGoogle() async throws {
         isLoading = true
         defer { isLoading = false }
