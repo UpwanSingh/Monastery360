@@ -21,6 +21,7 @@ targets:
         INFOPLIST_FILE: Info.plist
         DEVELOPMENT_TEAM: "" # User to fill if needed, or automatic
         CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION: YES
         marketingVersion: 1.0.0
         currentProjectVersion: 1
     dependencies:
