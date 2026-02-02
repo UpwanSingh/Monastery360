@@ -14,6 +14,8 @@ struct HomeView: View {
     @State private var nearby: [Monastery] = []
     @State private var popular: [Monastery] = []
     
+    @State private var showNotifications = false
+    
     var body: some View {
         NavigationStack(path: Bindable(router).homePath) {
             ScrollView {
@@ -32,7 +34,7 @@ struct HomeView: View {
                                 .foregroundStyle(Color.Text.secondary)
                         }
                         Spacer()
-                        Button(action: {}) { // Placeholder for notifications
+                        Button(action: { showNotifications = true }) { // Notifications
                             Image(systemName: "bell.fill")
                                 .foregroundColor(Color.Text.primary)
                         }
@@ -112,6 +114,9 @@ struct HomeView: View {
                 loadData()
             }
             .withRouteHandler()
+            .sheet(isPresented: $showNotifications) {
+                NotificationsView()
+            }
         }
     }
     

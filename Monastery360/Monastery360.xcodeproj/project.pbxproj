@@ -61,6 +61,7 @@
 		C1A5D3E87E7BE393B6CCBDD4 /* Monastery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43CCD42965233CDA5A6043 /* Monastery.swift */; };
 		C481EBBD6A0299DB7D1DAF3A /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F6C2FEF561CD9BCF27859 /* ToastView.swift */; };
 		C90E77F4D6F61A4AF41E3402 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9463F6DCF0209822FE8D8C4 /* SplashView.swift */; };
+		CC7BB2612633462D080DF477 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE30CCEC2F2C9FD9FFC7F20A /* NotificationsView.swift */; };
 		CE0E10FC78DE5B277B1376A3 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D814C9E25161A748EA3C097 /* SavedView.swift */; };
 		D112A020992FF96868EFD9F8 /* MonasteryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BC71233DF4E810AB82CC9 /* MonasteryRepository.swift */; };
 		D2AC68F71F61E71BE3161FB3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 28B8C647503C14494266AD1F /* FirebaseAnalytics */; };
@@ -153,6 +154,7 @@
 		FA91649BC212F0895A292E2A /* OfflineStorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineStorageView.swift; sourceTree = "<group>"; };
 		FC673125205AC59B642C9C85 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		FDA0443051545EEA73635DD5 /* DiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryView.swift; sourceTree = "<group>"; };
+		FE30CCEC2F2C9FD9FFC7F20A /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +340,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		8F56D1F34970D8B3A13C5E5A /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				FE30CCEC2F2C9FD9FFC7F20A /* NotificationsView.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		942D530D513925B23C2580D5 /* Features */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,6 +357,7 @@
 				2AD3AB43BF762B886FD274F3 /* Home */,
 				B4293109791A028ADBD4285F /* Map */,
 				DD60EAC038BFD8E20C2AA9B4 /* Monastery */,
+				8F56D1F34970D8B3A13C5E5A /* Notifications */,
 				43824059B094F6943F1E5C32 /* Profile */,
 				1A61FFA5A3127C384F9D8CD9 /* Saved */,
 				D12134903D04E904C5F0DD0E /* Settings */,
@@ -639,6 +650,7 @@
 				7A168191BF0FA3C8B13FFD50 /* MonasteryDetailViewModel.swift in Sources */,
 				45C93DC11C0325E6FBA4DE11 /* MonasteryPreviewCard.swift in Sources */,
 				D112A020992FF96868EFD9F8 /* MonasteryRepository.swift in Sources */,
+				CC7BB2612633462D080DF477 /* NotificationsView.swift in Sources */,
 				61EE9D39D311247F4E9AED3D /* OfflineManager.swift in Sources */,
 				28600F1EB2F46758848E41CC /* OfflineStorageView.swift in Sources */,
 				3BF46D836CDC44831101B242 /* OnboardingView.swift in Sources */,
