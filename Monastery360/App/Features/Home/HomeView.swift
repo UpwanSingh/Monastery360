@@ -60,14 +60,8 @@ struct HomeView: View {
                     // 3. Quick Actions
                     HStack(spacing: Space.lg) {
                         QuickActionButton(icon: "camera.aperture", label: "360°") {
-                            // Navigate directly to a premier 360 experience (e.g. Rumtek)
-                            // or we could show a filtered list. For now, let's open Rumtek which we know has a pano.
-                            if let rumtek = popular.first(where: { $0.name.en.contains("Rumtek") }) {
-                                router.navigate(to: .monasteryDetail(id: rumtek.id ?? ""))
-                            } else {
-                                // Fallback
-                                router.selectedTab = .discovery
-                            }
+                            // Navigate directly to Rumtek using its deterministic seed ID
+                            router.navigate(to: .monasteryDetail(id: "rumtek_monastery"))
                         }
                         QuickActionButton(icon: "map", label: "Map") {
                             router.selectedTab = .map // Map
