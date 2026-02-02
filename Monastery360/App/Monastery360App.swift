@@ -40,7 +40,7 @@ struct Monastery360App: App {
                 .environment(\.diContainer, diContainer)
                 // Backward compatibility (if any view still uses Environment lookups directly, though we refactored most)
                 .environment(diContainer.authService)
-                .preferredColorScheme(.dark) // Enforce dark mode for premium feel
+                .preferredColorScheme(.light) // Enforce light mode for airy feel (User Request)
         }
     }
 }
