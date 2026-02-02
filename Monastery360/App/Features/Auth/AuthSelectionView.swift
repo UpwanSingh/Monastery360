@@ -69,9 +69,7 @@ struct AuthSelectionView: View {
                         M360Button("Continue with Email", icon: "envelope", style: .secondary, isLoading: false) {
                             showEmailLogin = true
                         }
-                        .sheet(isPresented: $showEmailLogin) {
-                            EmailLoginView(viewModel: vm)
-                        }
+
                         
                         // Guest Mode
                         M360Button("Continue as Guest", style: .text, isLoading: vm.isLoading) {
@@ -94,6 +92,11 @@ struct AuthSelectionView: View {
                 }
                 .padding(.horizontal, Space.xl)
                 .padding(.bottom, Space.xxl)
+            }
+        }
+        .sheet(isPresented: $showEmailLogin) {
+            if let vm = viewModel {
+                EmailLoginView(viewModel: vm)
             }
         }
         .onAppear {
