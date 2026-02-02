@@ -142,18 +142,18 @@ struct MonasteryDetailView: View {
             }
         }
         .navigationBarHidden(true)
-        .onAppear {
+            }
+        }
+        .task(id: monasteryId) {
+            // Ensure data is loaded/reloaded if ID changes
             if viewModel == nil {
-                // Initialize ViewModel with dependencies from DI
-                // We create a new Repo instance here injecting the singletons/services
-                // Ideally Repo should also be a singleton or factory from DI, but this is a valid step.
-                let repo = MonasteryRepository(firestoreService: di.firestoreService, tenantService: di.tenantService)
-                let vm = MonasteryDetailViewModel(repository: repo, offlineManager: di.offlineManager, tenantService: di.tenantService)
-                self.viewModel = vm
-                
-                Task {
-                    await vm.loadMonastery(id: monasteryId)
-                }
+                 let repo = MonasteryRepository(firestoreService: di.firestoreService, tenantService: di.tenantService)
+                 let vm = MonasteryDetailViewModel(repository: repo, offlineManager: di.offlineManager, tenantService: di.tenantService)
+                 self.viewModel = vm
+            }
+            // Always ensure the VM loads the correct ID
+            if let vm = viewModel, vm.monastery?.id != monasteryId {
+                await vm.loadMonastery(id: monasteryId)
             }
         }
     }
