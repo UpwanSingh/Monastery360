@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -92,7 +92,7 @@
 		017F0E851B3312F8831A656D /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		01DA78AB9C6A2CFDFC17E50F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0255EED7676C15FF7A4C9F15 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		04570C20EB0D9FBD4C649D2D /* Monastery360.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Monastery360.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04570C20EB0D9FBD4C649D2D /* Monastery360.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monastery360.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06D0BC527EEEF08C23F09FA6 /* PermissionPrimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionPrimingView.swift; sourceTree = "<group>"; };
 		0ADCEBB51C5E067F6D3EFAAE /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		0B43CCD42965233CDA5A6043 /* Monastery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monastery.swift; sourceTree = "<group>"; };
@@ -558,7 +558,6 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					73CB11B9781B7AEE4C914D75 = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -577,7 +576,6 @@
 				9C3068BC332755CB55187B47 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A996B01DEE72C511DF8EC615 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -694,7 +692,7 @@
 				CODE_SIGN_ENTITLEMENTS = Monastery360.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4C8ZG43R2Q;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -816,7 +814,7 @@
 				CODE_SIGN_ENTITLEMENTS = Monastery360.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4C8ZG43R2Q;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (

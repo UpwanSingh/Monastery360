@@ -48,7 +48,8 @@ struct AuthSelectionView: View {
                                     
                                     Task {
                                         if await vm.handleAppleSignIn(idToken: idTokenString, nonce: nonce, name: appleIDCredential.fullName) {
-                                            // Managed in vm
+                                            appState.isAuthenticated = true
+                                            appState.currentRoute = .mainTab
                                         }
                                     }
                                 }
@@ -62,7 +63,12 @@ struct AuthSelectionView: View {
                         
                         // Google Sign In
                         M360Button("Continue with Google", icon: "globe", style: .secondary, isLoading: vm.loadingState == .google) {
-                            Task { await vm.signInWithGoogle() }
+                            Task { 
+                                if await vm.signInWithGoogle() {
+                                    appState.isAuthenticated = true
+                                    appState.currentRoute = .mainTab
+                                }
+                            }
                         }
                         
                         // Email Sign In
