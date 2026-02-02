@@ -18,8 +18,8 @@ class ProfileViewModel {
     func loadUserProfile() {
         if let user = authService.user {
             if user.isAnonymous {
-                self.userName = "Guest Pilgrim"
-                self.userInitials = "GP"
+                self.userName = "Pilgrim"
+                self.userInitials = "P"
             } else {
                 self.userName = user.displayName ?? "Pilgrim"
                 // Simple initials extraction

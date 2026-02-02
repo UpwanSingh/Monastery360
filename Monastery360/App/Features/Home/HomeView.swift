@@ -24,15 +24,23 @@ struct HomeView: View {
                     // For MVP simplicity, simple header:
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("Tashi Delek, \(authService.user?.displayName ?? "Guest")")
+                            // "Pilgrim" is more immersive than "Guest"
+                            Text("Tashi Delek, \(authService.user?.displayName ?? "Pilgrim")")
                                 .style(Typography.h2)
                             Text(Date().formatted(date: .abbreviated, time: .omitted))
                                 .style(Typography.caption)
                                 .foregroundStyle(Color.Text.secondary)
                         }
                         Spacer()
-                        Image(systemName: "bell.fill")
-                        Image(systemName: "person.circle.fill").font(.title)
+                        Button(action: {}) { // Placeholder for notifications
+                            Image(systemName: "bell.fill")
+                                .foregroundColor(Color.Text.primary)
+                        }
+                        Button(action: { router.navigate(to: .profile) }) {
+                             Image(systemName: "person.circle.fill")
+                                .font(.title)
+                                .foregroundColor(Color.Text.primary)
+                        }
                     }
                     .padding(.horizontal, Space.lg)
                     .padding(.top, Space.md)
@@ -49,14 +57,23 @@ struct HomeView: View {
                     
                     // 3. Quick Actions
                     HStack(spacing: Space.lg) {
-                        QuickActionButton(icon: "camera.aperture", label: "360°")
-                        QuickActionButton(icon: "map", label: "Map")
-                        QuickActionButton(icon: "magnifyingglass", label: "Search")
+                        QuickActionButton(icon: "camera.aperture", label: "360°") {
+                            // Navigate to a 360 experience logic or Discovery
+                            router.selectedTab = .discovery // Explore
+                        }
+                        QuickActionButton(icon: "map", label: "Map") {
+                            router.selectedTab = .map // Map
+                        }
+                        QuickActionButton(icon: "magnifyingglass", label: "Search") {
+                            router.selectedTab = .discovery // Explore (Discovery)
+                        }
                     }
                     .padding(.horizontal, Space.lg)
                     
                     // 4. Nearby
-                    SectionHeader(title: "Nearby Sanctuaries")
+                    SectionHeader(title: "Nearby Sanctuaries") {
+                        router.selectedTab = .map // Map shows nearby
+                    }
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: Space.md) {
                             ForEach(nearby) { item in
@@ -68,7 +85,9 @@ struct HomeView: View {
                     }
                     
                     // 5. Popular
-                    SectionHeader(title: "Most Popular")
+                    SectionHeader(title: "Most Popular") {
+                        router.selectedTab = .discovery // Explore
+                    }
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: Space.md) {
                             ForEach(popular) { item in
@@ -109,11 +128,17 @@ struct HomeView: View {
 // Helpers
 struct SectionHeader: View {
     let title: String
+    var onShowAll: (() -> Void)? = nil
+    
     var body: some View {
         HStack {
             Text(title).style(Typography.h3)
             Spacer()
-            Text("Show All").font(.caption).foregroundStyle(Color.Brand.primary)
+            if let onShowAll {
+                Button(action: onShowAll) {
+                    Text("Show All").font(.caption).foregroundStyle(Color.Brand.primary)
+                }
+            }
         }
         .padding(.horizontal, Space.lg)
     }
@@ -122,14 +147,19 @@ struct SectionHeader: View {
 struct QuickActionButton: View {
     let icon: String
     let label: String
+    let action: () -> Void
+    
     var body: some View {
-        VStack {
-            Circle()
+        Button(action: action) {
+            VStack {
+                Circle()
                 .fill(Color.Surface.interaction)
                 .frame(width: 50, height: 50)
                 .overlay(Image(systemName: icon).foregroundStyle(Color.Brand.primary))
-            Text(label).style(Typography.caption)
+                Text(label).style(Typography.caption)
+            }
         }
+        .buttonStyle(.plain)
     }
 }
 

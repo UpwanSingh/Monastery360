@@ -75,6 +75,30 @@ struct MapView: View {
             }
             .withRouteHandler()
         }
+        .sheet(isPresented: $showList) {
+            NavigationStack {
+                if let vm = viewModel {
+                    List(vm.monasteries) { item in
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(item.name.en).font(.headline)
+                                Text(item.sectTradition ?? "").font(.caption).foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                            Image(systemName: "chevron.right").foregroundStyle(.secondary)
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            showList = false
+                            vm.selectMonastery(item)
+                        }
+                    }
+                    .navigationTitle("Sanctuaries")
+                    .navigationBarTitleDisplayMode(.inline)
+                }
+            }
+            .presentationDetents([.medium, .large])
+        }
         .onAppear {
             if viewModel == nil {
                let repo = MonasteryRepository(firestoreService: di.firestoreService, tenantService: di.tenantService)

@@ -147,11 +147,37 @@ struct DiscoveryRow: View {
     
     var body: some View {
         HStack(spacing: Space.md) {
-            Rectangle()
-                .fill(Color.gray.opacity(0.3))
-                .frame(width: 80, height: 80)
-                .cornerRadius(Radius.md)
-                .overlay(Image(systemName: "photo"))
+            Group {
+                if let url = URL(string: monastery.thumbnailUrl), !monastery.thumbnailUrl.isEmpty {
+                    AsyncImage(url: url) { phase in
+                        switch phase {
+                        case .empty:
+                            Rectangle().fill(Color.Surface.interaction)
+                        case .success(let image):
+                            image.resizable().aspectRatio(contentMode: .fill)
+                        case .failure:
+                             Rectangle().fill(Color.gray.opacity(0.3)).overlay(Image(systemName: "photo"))
+                        @unknown default:
+                            EmptyView()
+                        }
+                    }
+                } else if let first = monastery.galleryUrls?.first, let url = URL(string: first) {
+                     AsyncImage(url: url) { phase in
+                        if let image = phase.image {
+                            image.resizable().aspectRatio(contentMode: .fill)
+                        } else {
+                            Rectangle().fill(Color.gray.opacity(0.3)).overlay(Image(systemName: "photo"))
+                        }
+                     }
+                } else {
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.3))
+                        .overlay(Image(systemName: "photo"))
+                }
+            }
+            .frame(width: 80, height: 80)
+            .cornerRadius(Radius.md)
+            .clipped()
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(monastery.name.en).style(Typography.bodyLg)
