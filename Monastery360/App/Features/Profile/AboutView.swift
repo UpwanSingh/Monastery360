@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct AboutView: View {
+    @Environment(\.diContainer) var di
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
 
     var body: some View {
@@ -56,6 +57,26 @@ struct AboutView: View {
                         Text("support@monastery360.com")
                     }
                     .foregroundColor(Color.Brand.primary)
+                }
+                
+                // Developer Options (For Data Seeding)
+                Text("Developer Tools")
+                    .style(Typography.h3)
+                    .padding(.top, Space.lg)
+                
+                Button(action: {
+                    Task {
+                        try? await di.seedService.seedMonasteries()
+                        print("Database seeded!")
+                    }
+                }) {
+                    HStack {
+                        Image(systemName: "server.rack")
+                        Text("Seed Database (Populate Monasteries)")
+                    }
+                    .padding()
+                    .background(Color.Surface.elevated)
+                    .cornerRadius(Radius.md)
                 }
                 
                 Spacer()

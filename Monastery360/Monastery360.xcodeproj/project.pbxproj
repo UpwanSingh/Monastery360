@@ -14,6 +14,7 @@
 		201608CA05328EADB8B9B93D /* TenantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EC4FDFF39B6E7602A850B0 /* TenantService.swift */; };
 		28600F1EB2F46758848E41CC /* OfflineStorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA91649BC212F0895A292E2A /* OfflineStorageView.swift */; };
 		30DE7A2A1D5848A70411C293 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADCEBB51C5E067F6D3EFAAE /* Router.swift */; };
+		3642A572322722C0F18F7308 /* SeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCA56A8A80FF08520DA8F43 /* SeedService.swift */; };
 		3828BCC8AA1909000C2D292C /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73821542B32E34707B7E735 /* MapViewModel.swift */; };
 		3915E52CA18886D32825C5FD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8E80D026FAE0FBFD16F2B0E2 /* FirebaseFirestore */; };
 		3AE35EFCAE74124AF3B0B8A4 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A218AE9FAC75793667E46E9D /* EmptyStateView.swift */; };
@@ -110,6 +111,7 @@
 		431B1F9B4675E71E8A68187D /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		438195459C0D61AF707F8830 /* Monastery360Tests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = Monastery360Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E00186FB4323FA0466548D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		4BCA56A8A80FF08520DA8F43 /* SeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedService.swift; sourceTree = "<group>"; };
 		51B15BF58D8F02944A4CB5C5 /* HomeComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComponents.swift; sourceTree = "<group>"; };
 		57ED69FA6C9AA677F74D2B15 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5A00C2FA8C8CA6E1C0973FB0 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 			children = (
 				4956C8203730AFA814FDD055 /* Core */,
 				C4155DE6A1176333CFFA878E /* DesignSystem */,
+				77CD2B45C3BBC158F2B146F9 /* Dev */,
 				942D530D513925B23C2580D5 /* Features */,
 				53FC77B1C742A4C43937A533 /* Models */,
 				ACFE8B0A015B3279866E2F5F /* Services */,
@@ -304,6 +307,14 @@
 				63C3F5F1B42DC3E989B357FA /* Monastery360App.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		77CD2B45C3BBC158F2B146F9 /* Dev */ = {
+			isa = PBXGroup;
+			children = (
+				4BCA56A8A80FF08520DA8F43 /* SeedService.swift */,
+			);
+			path = Dev;
 			sourceTree = "<group>";
 		};
 		791D39A682ACB9954E3D2F0A /* ViewModels */ = {
@@ -640,6 +651,7 @@
 				30DE7A2A1D5848A70411C293 /* Router.swift in Sources */,
 				CE0E10FC78DE5B277B1376A3 /* SavedView.swift in Sources */,
 				87C31B255E5900A9FA0095A7 /* SavedViewModel.swift in Sources */,
+				3642A572322722C0F18F7308 /* SeedService.swift in Sources */,
 				AC56EF655D482270BAD6B758 /* SettingsView.swift in Sources */,
 				C90E77F4D6F61A4AF41E3402 /* SplashView.swift in Sources */,
 				652F3AEAC9A77B5D4BF1A871 /* StorageService.swift in Sources */,

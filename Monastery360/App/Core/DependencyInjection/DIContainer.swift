@@ -21,6 +21,9 @@ class DIContainer {
     // Offline Manager (Now managed heavily by DI)
     let offlineManager: OfflineManager
     
+    // Dev Tools
+    let seedService: SeedService
+    
     init() {
         // 1. Core Config
         self.tenantService = TenantService()
@@ -35,6 +38,7 @@ class DIContainer {
         // 3. Dependent Services
         // Injecting dependencies manually here
         self.offlineManager = OfflineManager(storageService: self.storageService)
+        self.seedService = SeedService(firestoreService: self.firestoreService, tenantService: self.tenantService)
     }
     
     // For Previews/Tests
@@ -46,6 +50,7 @@ class DIContainer {
         self.analyticsService = AnalyticsService()
         self.locationService = LocationService()
         self.offlineManager = OfflineManager(storageService: self.storageService)
+        self.seedService = SeedService()
     }
     
     static let preview = DIContainer(mock: true)
