@@ -1,11 +1,17 @@
 import SwiftUI
 import FirebaseCore
+import GoogleSignIn
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
     return true
+  }
+  
+  func application(_ app: UIApplication,
+                   open url: URL,
+                   options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+      return GIDSignIn.sharedInstance.handle(url)
   }
 }
 
@@ -16,14 +22,24 @@ struct Monastery360App: App {
     // Core State Objects
     @State private var appState = AppState()
     @State private var router = Router()
-    @State private var authService = AuthService()
+    
+    // Dependency Injection
+    @State private var diContainer: DIContainer
+    
+    init() {
+        FirebaseApp.configure()
+        _diContainer = State(initialValue: DIContainer())
+    }
     
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environment(appState)
                 .environment(router)
-                .environment(authService)
+                // Main DI Injection
+                .environment(\.diContainer, diContainer)
+                // Backward compatibility (if any view still uses Environment lookups directly, though we refactored most)
+                .environment(diContainer.authService)
                 .preferredColorScheme(.dark) // Enforce dark mode for premium feel
         }
     }

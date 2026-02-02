@@ -2,16 +2,21 @@ import SwiftUI
 import Observation
 
 struct DiscoveryView: View {
+    @Environment(\.diContainer) var di
     @Environment(Router.self) var router
+    
+    @State private var repo: MonasteryRepository?
+    
     @State private var searchText = ""
-    @State private var activeFilter: String = "All"
+    @State private var searchResults: [Monastery] = []
     @State private var monasteries: [Monastery] = []
+    
+    @State private var activeFilter: String = "All"
     
     // Filters
     let filters = ["All", "Nyingma", "Kagyu", "Ancient", "Accessible"]
     
     // Repository
-    @State private var repo = MonasteryRepository()
     
     var body: some View {
         NavigationStack(path: Bindable(router).discoveryPath) {
@@ -48,6 +53,29 @@ struct DiscoveryView: View {
                     }
                     .padding(.horizontal, Space.lg)
                 }
+                .onChange(of: searchText) { _, newValue in
+                    if repo == nil {
+                        repo = MonasteryRepository(firestoreService: di.firestoreService, tenantService: di.tenantService)
+                    }
+                    
+                    guard !newValue.isEmpty, let repo = repo else {
+                        // Reset to all if cleared
+                        loadData()
+                        return
+                    }
+                    
+                    Task {
+                        do {
+                            let results = try await repo.search(query: newValue)
+                             await MainActor.run {
+                                 // Update main list to show results
+                                 self.monasteries = results
+                             }
+                        } catch {
+                            print("Search error: \(error)")
+                        }
+                    }
+                }
                 .padding(.bottom, Space.md)
                 
                 // 3. List
@@ -73,7 +101,16 @@ struct DiscoveryView: View {
     
     func loadData() {
         Task {
-            monasteries = (try? await repo.fetchPopular()) ?? []
+            if let repo = repo {
+                // Determine what to load based on active filter
+                if activeFilter == "All" {
+                     monasteries = (try? await repo.fetchAll()) ?? []
+                } else {
+                     // Fetch all and filter locally (repo.fetchAll is efficient for this dataset size)
+                     let all = (try? await repo.fetchAll()) ?? []
+                     monasteries = all.filter { $0.tags.contains(activeFilter.lowercased()) || ($0.sectTradition == activeFilter) }
+                }
+            }
         }
     }
     
@@ -125,5 +162,6 @@ struct DiscoveryRow: View {
             Image(systemName: "chevron.right").foregroundStyle(Color.Text.tertiary)
         }
         .padding(.vertical, Space.sm)
+        .contentShape(Rectangle())
     }
 }

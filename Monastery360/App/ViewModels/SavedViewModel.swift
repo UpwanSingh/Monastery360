@@ -11,10 +11,12 @@ class SavedViewModel {
     // Dependencies
     private let offlineManager: OfflineManager
     private let repository: MonasteryRepository
+    private let tenantService: TenantService
     
-    init(offlineManager: OfflineManager, repository: MonasteryRepository) {
+    init(offlineManager: OfflineManager, repository: MonasteryRepository, tenantService: TenantService) {
         self.offlineManager = offlineManager
         self.repository = repository
+        self.tenantService = tenantService
     }
     
     func loadSavedMonasteries() async {
@@ -31,11 +33,9 @@ class SavedViewModel {
         }
         
         // 2. Fetch details for each ID
-        // Note: Ideally, we should fetch from LOCAL storage/cache first if fully offline.
-        // The repository might need to support "fetchLocal" or we assume details are small enough to cache or we rely on the repository's caching.
-        // For strictly offline verification, we need to ensure these Monastery objects can be reconstructed from disk or are cached in Firestore/Repo.
-        // Current Repo implementation fetches from Firestore. If offline, Firestore has a cache.
-        // Optimally: Repo should have `fetchMonasteries(ids: [String])`
+        // 2. Fetch details for each ID
+        // Firestore caching provides offline access automatically.
+        // Parallel fetch improves performance over sequential calls.
         
         var loaded: [Monastery] = []
         
@@ -59,7 +59,7 @@ class SavedViewModel {
     }
     
     func removeSaved(id: String) {
-        offlineManager.removeContent(for: id)
+        offlineManager.removeContent(for: id, tenantId: tenantService.currentTenantId)
         // Refresh list locally
         if let index = savedMonasteries.firstIndex(where: { $0.id == id }) {
             savedMonasteries.remove(at: index)

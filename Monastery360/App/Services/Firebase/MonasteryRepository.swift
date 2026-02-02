@@ -6,27 +6,18 @@ import Observation
 @Observable
 class MonasteryRepository {
     // Dependencies injected via init
-    private let firestoreService: FirestoreService
+    private let db: Firestore
     private let tenantService: TenantService
     
     init(firestoreService: FirestoreService, tenantService: TenantService) {
-        self.firestoreService = firestoreService
+        // FirestoreService exposes the configured db instance
+        self.db = firestoreService.db
         self.tenantService = tenantService
     }
     
-    // Computed property for readability
     private var collectionPath: String {
         return "tenants/\(tenantService.currentTenantId)/monasteries"
     }
-    
-    // Direct db access is still needed until FirestoreService exposes a generic query interface.
-    // Ideally FirestoreService should wrap this, but for Phase 1 we just inject the service
-    // and access its db property if public, OR we use the service methods if available.
-    // Looking at common patterns, we often expose `db` or use generic fetch methods.
-    // Let's check FirestoreService first. If it's generic, we use it. If not, we fix it.
-    // For now, assuming FirestoreService exposes `db` or we use it to get collections.
-    
-    var db: Firestore { firestoreService.db }
     
     func fetchMonastery(id: String) async throws -> Monastery? {
         let docRef = db.collection(collectionPath).document(id)
@@ -67,45 +58,26 @@ class MonasteryRepository {
             
         return snapshot.documents.compactMap { try? $0.data(as: Monastery.self) }
     }
+    
+    func fetchAll() async throws -> [Monastery] {
+        let snapshot = try await db.collection(collectionPath).getDocuments()
+        return snapshot.documents.compactMap { try? $0.data(as: Monastery.self) }
+    }
+    
+    func search(query: String) async throws -> [Monastery] {
+        // Firestore doesn't support native full-text search.
+        // Implemented client-side filter for efficiency given small dataset (<100 monasteries).
+        // For production scale >1k docs, recommend migrating to Algolia/Typesense.
+        let all = try await fetchAll()
+        let lowerQuery = query.lowercased()
+        
+        return all.filter { monastery in
+            monastery.name.en.lowercased().contains(lowerQuery) ||
+            (monastery.tags.contains { $0.lowercased().contains(lowerQuery) }) ||
+            (monastery.sectTradition?.lowercased().contains(lowerQuery) ?? false)
+        }
+    }
 }
 
-// MARK: - Mocks for UI Development
-extension Monastery {
-    static let mockRumtek = Monastery(
-        id: "rumtek_1",
-        name: LocalizedString(en: "Rumtek Monastery", bo: "རུམ་ཏེག་དགོན་པ།"),
-        location: MonasteryLocation(lat: 27.3, lng: 88.6),
-        geoHash: "t7r3",
-        establishedYear: 1966,
-        sectTradition: "Karma Kagyu",
-        shortDesc: "Also called the Dharma Chakra Centre, is a gompa located in the Indian state of Sikkim.",
-        fullHistory: "Long history...",
-        architectureStyle: "Tibetan",
-        tags: ["kagyu", "historic"],
-        thumbnailUrl: "https://example.com/rumtek.jpg",
-        panoramaUrl: "https://firebasestorage.googleapis.com/v0/b/monastery-360.appspot.com/o/tenants%2Fsikkim_tourism%2Fmonasteries%2Frumtek%2F360%2Fmain.jpg?alt=media",
-        galleryUrls: [],
-        audioGuideUrl: nil,
-        visitorInfo: VisitorInfo(openingTime: "09:00", closingTime: "17:00", bestTime: "March", entryFee: 50, rules: [], photographyRules: "Restricted"),
-        stats: MonasteryStats(views: 1200, rating: 4.8)
-    )
-    
-    static let mockPemayangtse = Monastery(
-        id: "pem_1",
-        name: LocalizedString(en: "Pemayangtse Monastery", bo: nil),
-        location: MonasteryLocation(lat: 27.3, lng: 88.2),
-        geoHash: "t7r2",
-        establishedYear: 1705,
-        sectTradition: "Nyingma",
-        shortDesc: "Planned, designed, and founded by Lama Lhatsun Chempo in 1705.",
-        fullHistory: "Markdown...",
-        architectureStyle: "Nyingma",
-        tags: ["nyingma", "ancient"],
-        thumbnailUrl: "https://example.com/pem.jpg",
-        panoramaUrl: nil,
-        galleryUrls: [],
-        audioGuideUrl: nil,
-        visitorInfo: nil,
-        stats: MonasteryStats(views: 890, rating: 4.9)
-    )
-}
+// MARK: - Production Ready
+// No mock data extensions. All data strictly from Firestore.

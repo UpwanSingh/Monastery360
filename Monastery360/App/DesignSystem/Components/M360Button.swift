@@ -44,6 +44,7 @@ struct M360Button: View {
                 RoundedRectangle(cornerRadius: Radius.pill)
                     .stroke(borderColor, lineWidth: 1)
             )
+            .contentShape(Rectangle())
         }
         .disabled(isLoading)
         .opacity(isLoading ? 0.7 : 1.0)

@@ -18,11 +18,42 @@ class AuthViewModel {
     }
     
     func signInAnonymously() async -> Bool {
+        return await performAuthAction {
+            try await authService.signInAnonymously()
+        }
+    }
+    
+    func signInWithGoogle() async -> Bool {
+        return await performAuthAction {
+            try await authService.signInWithGoogle()
+        }
+    }
+    
+    func handleAppleSignIn(idToken: String, nonce: String, name: PersonNameComponents?) async -> Bool {
+        return await performAuthAction {
+            try await authService.signInWithApple(idTokenString: idToken, nonce: nonce, fullName: name)
+        }
+    }
+    
+    func signInWithEmail(email: String, password: String) async -> Bool {
+        return await performAuthAction {
+            try await authService.signInWithEmail(email: email, pass: password)
+        }
+    }
+    
+    func signUpWithEmail(email: String, password: String) async -> Bool {
+        return await performAuthAction {
+            try await authService.signUpWithEmail(email: email, pass: password)
+        }
+    }
+    
+    // Removed Simulator Placeholder Helper
+    
+    private func performAuthAction(_ action: () async throws -> Void) async -> Bool {
         isLoading = true
         error = nil
-        
         do {
-            try await authService.signInAnonymously()
+            try await action()
             isLoading = false
             return true
         } catch {

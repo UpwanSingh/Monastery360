@@ -49,7 +49,7 @@ class Experience360ViewModel {
         // 1. Check Offline
         if let id = monastery.id, 
            offlineManager.isDownloaded(id),
-           let localUrl = offlineManager.getLocalURL(for: id, filename: "360/main.webp") {
+           let localUrl = offlineManager.getLocalURL(for: id, tenantId: tenantService.currentTenantId, filename: "360/main.webp") {
             return localUrl
         }
         

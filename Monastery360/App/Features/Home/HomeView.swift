@@ -3,8 +3,12 @@ import Observation
 
 struct HomeView: View {
     @Environment(Router.self) var router
-    @Environment(AuthService.self) var authService
-    @State private var repo = MonasteryRepository()
+    @Environment(\.diContainer) var di
+    
+    // Derived from DI or Environment
+    var authService: AuthService { di.authService }
+    
+    @State private var repo: MonasteryRepository?
     
     @State private var featured: Monastery?
     @State private var nearby: [Monastery] = []
@@ -83,6 +87,9 @@ struct HomeView: View {
             }
             .background(Color.Surface.base.ignoresSafeArea())
             .onAppear {
+                if repo == nil {
+                    self.repo = MonasteryRepository(firestoreService: di.firestoreService, tenantService: di.tenantService)
+                }
                 loadData()
             }
             .withRouteHandler()
@@ -90,6 +97,7 @@ struct HomeView: View {
     }
     
     func loadData() {
+        guard let repo = repo else { return }
         Task {
             self.featured = try? await repo.fetchFeatured()
             self.nearby = (try? await repo.fetchNearby(lat: 0, lng: 0)) ?? []

@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct RootView: View {
-    @State var appState = AppState()
-    @State var di = DIContainer() // Initialize DI
+    @Environment(AppState.self) var appState
+    @Environment(\.diContainer) var di
     
     var body: some View {
         Group {
@@ -14,14 +14,10 @@ struct RootView: View {
             case .authSelection:
                 AuthSelectionView()
             case .mainTab:
-                MainTabView() // To be implemented in next step
+                MainTabView()
             }
         }
-        .environment(appState)
-        .environment(di)
-        // Inject Services specifically if needed, but DIContainer covers it
-        .environment(di.authService)
-        .environment(di.tenantService)
+        // No need to re-inject environment here, they cascade from App
     }
 }
 

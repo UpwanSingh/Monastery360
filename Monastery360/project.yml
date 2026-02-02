@@ -2,14 +2,14 @@ name: Monastery360
 options:
   bundleIdPrefix: com.monastery360
   deploymentTarget:
-    iOS: 18.0
+    iOS: 17.0
   groupSortPosition: top
   xcodeVersion: 15.0
 targets:
   Monastery360:
     type: application
     platform: iOS
-    deploymentTarget: 18.0
+    deploymentTarget: 17.0
     sources:
       - path: App
       - path: GoogleService-Info.plist
@@ -32,11 +32,12 @@ targets:
         product: FirebaseStorage
       - package: Firebase
         product: FirebaseAnalytics
-      # - package: SDWebImage # Often useful, but sticking to prompt "Firebase ONLY" unless specifically needed for caching images efficiently - sticking to native AsyncImage for now or custom cache.
+      - package: GoogleSignIn
+        product: GoogleSignIn
   Monastery360Tests:
     type: bundle.unit-test
     platform: iOS
-    deploymentTarget: 18.0
+    deploymentTarget: 17.0
     sources:
       - path: App
         excludes: ["**/*"] # Exclude app sources, we will just import the module
@@ -51,3 +52,6 @@ packages:
   Firebase:
     url: https://github.com/firebase/firebase-ios-sdk
     from: 10.0.0
+  GoogleSignIn:
+    url: https://github.com/google/GoogleSignIn-iOS
+    from: 7.0.0

@@ -43,7 +43,7 @@ class MonasteryDetailViewModel {
     
     func removeOffline() {
         guard let id = monastery?.id else { return }
-        offlineManager.removeContent(for: id)
+        offlineManager.removeContent(for: id, tenantId: tenantService.currentTenantId)
     }
     
     var isSaved: Bool {

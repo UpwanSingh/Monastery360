@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SplashView: View {
     @Environment(AppState.self) private var appState
-    @Environment(TenantService.self) private var tenantService
+    @Environment(\.diContainer) private var di
     
     @State private var opacity: Double = 0
     
@@ -29,8 +29,8 @@ struct SplashView: View {
             
             // "Invisible loading state" logic
             Task {
-                // 1. Resolve Tenant
-                await tenantService.resolveTenant()
+                // 1. Resolve Tenant (Already initialized by DI)
+                // await di.tenantService.resolveTenant() 
                 // 2. Check Auth State (Simulated delay for UX)
                 try? await Task.sleep(nanoseconds: 2_000_000_000)
                 

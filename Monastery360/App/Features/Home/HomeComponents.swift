@@ -43,6 +43,7 @@ struct FeaturedHeroCard: View {
         }
         .frame(height: 250)
         .cardStyle(radius: Radius.lg, elevation: 5, bg: .clear)
+        .contentShape(Rectangle())
     }
 }
 
@@ -72,5 +73,6 @@ struct MonasteryCompactCard: View {
         }
         .frame(width: 160)
         .cardStyle(radius: Radius.md, elevation: 2, bg: .clear)
+        .contentShape(Rectangle())
     }
 }

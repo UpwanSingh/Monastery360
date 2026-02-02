@@ -21,13 +21,30 @@ class MapViewModel {
         self.tenantService = tenantService
     }
     
+    private let locationService = LocationService() // Ideally injected or used via DI
+    
     func loadMonasteries() async {
         isLoading = true
         error = nil
         
         do {
-            // In a real app, we might get user location here
-            self.monasteries = try await repository.fetchNearby(lat: 27.5, lng: 88.5) // Sikkim approx center
+            // 1. Try to get user location
+            var userLat = 27.5
+            var userLng = 88.5
+            
+            do {
+                let location = try await locationService.getCurrentLocation()
+                userLat = location.coordinate.latitude
+                userLng = location.coordinate.longitude
+                
+                // Update camera to user
+                self.cameraPosition = .region(MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)))
+            } catch {
+                print("Location unavailable, defaulting to Sikkim center")
+            }
+            
+            // 2. Fetch nearby (Repository handles the distance sorting)
+            self.monasteries = try await repository.fetchNearby(lat: userLat, lng: userLng)
         } catch {
             self.error = error.localizedDescription
         }

@@ -63,7 +63,7 @@ struct SavedView: View {
         .onAppear {
             if viewModel == nil {
                 let repo = MonasteryRepository(firestoreService: di.firestoreService, tenantService: di.tenantService)
-                let vm = SavedViewModel(offlineManager: di.offlineManager, repository: repo)
+                let vm = SavedViewModel(offlineManager: di.offlineManager, repository: repo, tenantService: di.tenantService)
                 self.viewModel = vm
                 
                 Task {
