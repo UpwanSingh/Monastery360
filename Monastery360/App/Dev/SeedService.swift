@@ -37,7 +37,7 @@ class SeedService {
                 panoramaUrl: "https://thumbs.dreamstime.com/b/rumtek-monastery-360-degree-panorama-sikkim-india-105151528.jpg",
                 galleryUrls: [
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Rumtek_Monastery_Gangtok_Sikkim.jpg/800px-Rumtek_Monastery_Gangtok_Sikkim.jpg",
-                    "https://www.sikkimtourism.gov.in/Content/Images/Trekking/Rumtek/1.jpg"
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Rumtek_Monastery_Gangtok_Sikkim.jpg/800px-Rumtek_Monastery_Gangtok_Sikkim.jpg"
                 ],
                 audioGuideUrl: nil,
                 visitorInfo: VisitorInfo(
@@ -129,9 +129,9 @@ class SeedService {
                 fullHistory: "Tashiding means 'The Devoted Central Glory' and the monastery by this name was founded in 1641 by Ngadak Sempa Chempo Phunshok Rigzing, who belonged to the Nyingma sect of Tibetan Buddhism...",
                 architectureStyle: "Ancient",
                 tags: ["Sacred", "Bumchu", "Stupa"],
-                thumbnailUrl: "https://www.sikkimtourism.gov.in/Content/Images/Trekking/Tashiding/1.jpg",
+                thumbnailUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Tashiding_Monastery_Sikkim.jpg/800px-Tashiding_Monastery_Sikkim.jpg",
                 panoramaUrl: nil,
-                galleryUrls: ["https://www.sikkimtourism.gov.in/Content/Images/Trekking/Tashiding/1.jpg"],
+                galleryUrls: ["https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Tashiding_Monastery_Sikkim.jpg/800px-Tashiding_Monastery_Sikkim.jpg"],
                 audioGuideUrl: nil,
                 visitorInfo: VisitorInfo(
                     openingTime: "07:00",
@@ -164,7 +164,7 @@ class SeedService {
                 panoramaUrl: nil,
                 galleryUrls: [
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Lingdum_Monastery_Sikkim.jpg/1024px-Lingdum_Monastery_Sikkim.jpg",
-                    "https://www.sikkimtourism.gov.in/Content/Images/Trekking/Ranka/1.jpg"
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Lingdum_Monastery_Sikkim.jpg/1024px-Lingdum_Monastery_Sikkim.jpg"
                 ],
                 audioGuideUrl: nil,
                 visitorInfo: VisitorInfo(
