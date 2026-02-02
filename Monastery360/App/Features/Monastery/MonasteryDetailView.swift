@@ -16,13 +16,33 @@ struct MonasteryDetailView: View {
             if let vm = viewModel, let monastery = vm.monastery {
                 ScrollView {
                     VStack(spacing: 0) {
-                        // 1. Parallax Header Placeholder
+                        // 1. Parallax Header
                         ZStack {
-                            Rectangle()
-                                .fill(Color.Surface.secondary)
-                            Image(systemName: "photo")
-                                .font(.system(size: 40))
-                                .foregroundStyle(Color.Text.tertiary)
+                            if let url = URL(string: monastery.thumbnailUrl) {
+                                AsyncImage(url: url) { phase in
+                                    switch phase {
+                                    case .success(let image):
+                                        image.resizable()
+                                             .aspectRatio(contentMode: .fill)
+                                             .frame(height: 300)
+                                             .clipped()
+                                    case .failure:
+                                        Rectangle().fill(Color.Surface.secondary)
+                                        Image(systemName: "photo").font(.largeTitle).foregroundStyle(.secondary)
+                                    case .empty:
+                                        Rectangle().fill(Color.Surface.secondary)
+                                        ProgressView()
+                                    @unknown default:
+                                        EmptyView()
+                                    }
+                                }
+                            } else {
+                                Rectangle()
+                                    .fill(Color.Surface.secondary)
+                                Image(systemName: "photo")
+                                    .font(.system(size: 40))
+                                    .foregroundStyle(Color.Text.tertiary)
+                            }
                         }
                         .frame(height: 300)
                         
