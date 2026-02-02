@@ -4,6 +4,8 @@ struct AboutView: View {
     @Environment(\.diContainer) var di
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
     @State private var showSeedAlert = false
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
 
     var body: some View {
         ScrollView {
@@ -67,9 +69,16 @@ struct AboutView: View {
                 
                 Button(action: {
                     Task {
-                        try? await di.seedService.seedMonasteries()
-                        print("Database seeded!")
-                        showSeedAlert = true
+                        do {
+                            try await di.seedService.seedMonasteries()
+                            alertTitle = "Seeding Complete"
+                            alertMessage = "The database has been populated with real monastery data! 🏰\n\nPlease Restart the App to see changes."
+                            showSeedAlert = true
+                        } catch {
+                            alertTitle = "Seeding Failed"
+                            alertMessage = "Error: \(error.localizedDescription)\n\nPlease check your internet connection."
+                            showSeedAlert = true
+                        }
                     }
                 }) {
                     HStack {
@@ -80,10 +89,10 @@ struct AboutView: View {
                     .background(Color.Surface.elevated)
                     .cornerRadius(Radius.md)
                 }
-                .alert("Seeding Complete", isPresented: $showSeedAlert) {
+                .alert(alertTitle, isPresented: $showSeedAlert) {
                     Button("OK", role: .cancel) { }
                 } message: {
-                    Text("The database has been populated with real monastery data! 🏰")
+                    Text(alertMessage)
                 }
                 
                 Spacer()
