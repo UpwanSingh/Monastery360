@@ -30,6 +30,7 @@
 		584B98611056BB8695ED5367 /* GlobalConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B734117D151B78BE6D52CB4C /* GlobalConfigService.swift */; };
 		5BC3936706B278ED2F5DAC12 /* Experience360View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC21368A634CD5F94A9ADB7F /* Experience360View.swift */; };
 		5C73C23368EF1303BF4DCC0A /* M360TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967591013769C7FD632FAA72 /* M360TextField.swift */; };
+		5DB52748C383C5CC826C9A08 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0255EED7676C15FF7A4C9F15 /* ProfileViewModel.swift */; };
 		61EE9D39D311247F4E9AED3D /* OfflineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873232AE930B1E2211DFDE96 /* OfflineManager.swift */; };
 		652F3AEAC9A77B5D4BF1A871 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00C2FA8C8CA6E1C0973FB0 /* StorageService.swift */; };
 		6667C808CF78A7F3B3E3D051 /* HomeComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B15BF58D8F02944A4CB5C5 /* HomeComponents.swift */; };
@@ -39,6 +40,7 @@
 		73DD3FF04A7B0938B15AD73B /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293E5FA078A2E8A24DD1C6D0 /* AuthViewModel.swift */; };
 		7812B5824F869766D14FECA2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED69FA6C9AA677F74D2B15 /* User.swift */; };
 		7A168191BF0FA3C8B13FFD50 /* MonasteryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D70B92ECF1F8B195976A2A7 /* MonasteryDetailViewModel.swift */; };
+		8381EF5BF9FBA4C1E2FF0B44 /* AuthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D40A5CDF597779ED832E6D0 /* AuthViewModelTests.swift */; };
 		84BE96E176F64B5C44CF3F31 /* Experience360ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF638138B6256191E4130C31 /* Experience360ViewModel.swift */; };
 		864A9F5990DBB66A262FE907 /* AuthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CC0C77FCECA2B467132F68 /* AuthSelectionView.swift */; };
 		87C31B255E5900A9FA0095A7 /* SavedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7C0FEA1EE1EE3405A585D2 /* SavedViewModel.swift */; };
@@ -85,6 +87,7 @@
 /* Begin PBXFileReference section */
 		017F0E851B3312F8831A656D /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		01DA78AB9C6A2CFDFC17E50F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0255EED7676C15FF7A4C9F15 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		04570C20EB0D9FBD4C649D2D /* Monastery360.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Monastery360.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06D0BC527EEEF08C23F09FA6 /* PermissionPrimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionPrimingView.swift; sourceTree = "<group>"; };
 		0ADCEBB51C5E067F6D3EFAAE /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 		51B15BF58D8F02944A4CB5C5 /* HomeComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComponents.swift; sourceTree = "<group>"; };
 		57ED69FA6C9AA677F74D2B15 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5A00C2FA8C8CA6E1C0973FB0 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		5D40A5CDF597779ED832E6D0 /* AuthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelTests.swift; sourceTree = "<group>"; };
 		5D814C9E25161A748EA3C097 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
 		63C3F5F1B42DC3E989B357FA /* Monastery360App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monastery360App.swift; sourceTree = "<group>"; };
 		72EC4FDFF39B6E7602A850B0 /* TenantService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenantService.swift; sourceTree = "<group>"; };
@@ -303,6 +307,7 @@
 				AF638138B6256191E4130C31 /* Experience360ViewModel.swift */,
 				E73821542B32E34707B7E735 /* MapViewModel.swift */,
 				9D70B92ECF1F8B195976A2A7 /* MonasteryDetailViewModel.swift */,
+				0255EED7676C15FF7A4C9F15 /* ProfileViewModel.swift */,
 				2F7C0FEA1EE1EE3405A585D2 /* SavedViewModel.swift */,
 			);
 			path = ViewModels;
@@ -411,6 +416,7 @@
 		C08F296E4A9DD05F88917B92 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				5D40A5CDF597779ED832E6D0 /* AuthViewModelTests.swift */,
 				01DA78AB9C6A2CFDFC17E50F /* Info.plist */,
 				DF0FA7ABDB1A2B260C152801 /* Monastery360Tests.swift */,
 			);
@@ -569,6 +575,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8381EF5BF9FBA4C1E2FF0B44 /* AuthViewModelTests.swift in Sources */,
 				DE457100146AE46C56E4FF6C /* Monastery360Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,6 +625,7 @@
 				9218900A95078B8890862AF7 /* PanoramaView.swift in Sources */,
 				F2477E4731D47EAD76F287B9 /* PermissionPrimingView.swift in Sources */,
 				1CD0D9D239E7244CC170735A /* ProfileView.swift in Sources */,
+				5DB52748C383C5CC826C9A08 /* ProfileViewModel.swift in Sources */,
 				41C9985BB564670EAE5E36CD /* RootView.swift in Sources */,
 				9EE5C920414108248298363C /* RouteHandler.swift in Sources */,
 				30DE7A2A1D5848A70411C293 /* Router.swift in Sources */,
