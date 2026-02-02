@@ -15,6 +15,7 @@
 		201608CA05328EADB8B9B93D /* TenantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EC4FDFF39B6E7602A850B0 /* TenantService.swift */; };
 		28600F1EB2F46758848E41CC /* OfflineStorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA91649BC212F0895A292E2A /* OfflineStorageView.swift */; };
 		30DE7A2A1D5848A70411C293 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADCEBB51C5E067F6D3EFAAE /* Router.swift */; };
+		3828BCC8AA1909000C2D292C /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73821542B32E34707B7E735 /* MapViewModel.swift */; };
 		3915E52CA18886D32825C5FD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8E80D026FAE0FBFD16F2B0E2 /* FirebaseFirestore */; };
 		3AE35EFCAE74124AF3B0B8A4 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A218AE9FAC75793667E46E9D /* EmptyStateView.swift */; };
 		3AE6CE957C0EC919DA5CEEF0 /* MonasteryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FF4616C094CAFBA0076081 /* MonasteryDetailView.swift */; };
@@ -37,6 +38,7 @@
 		70B26DD7324E65434EAA0438 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 74198607866C61C59BA5C493 /* FirebaseAuth */; };
 		7812B5824F869766D14FECA2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED69FA6C9AA677F74D2B15 /* User.swift */; };
 		7A168191BF0FA3C8B13FFD50 /* MonasteryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D70B92ECF1F8B195976A2A7 /* MonasteryDetailViewModel.swift */; };
+		84BE96E176F64B5C44CF3F31 /* Experience360ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF638138B6256191E4130C31 /* Experience360ViewModel.swift */; };
 		864A9F5990DBB66A262FE907 /* AuthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CC0C77FCECA2B467132F68 /* AuthSelectionView.swift */; };
 		8C905AF7AC1742BF1AAD5EF7 /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD65C2AA9B58AF29D71104C0 /* CardModifier.swift */; };
 		9218900A95078B8890862AF7 /* PanoramaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4F283BF368AF806F7356B0 /* PanoramaView.swift */; };
@@ -119,6 +121,7 @@
 		A80D2D034058A622BD5C6FCC /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		A86276553C39331840BB09E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A9463F6DCF0209822FE8D8C4 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		AF638138B6256191E4130C31 /* Experience360ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experience360ViewModel.swift; sourceTree = "<group>"; };
 		B734117D151B78BE6D52CB4C /* GlobalConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConfigService.swift; sourceTree = "<group>"; };
 		BC21368A634CD5F94A9ADB7F /* Experience360View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experience360View.swift; sourceTree = "<group>"; };
 		CD65C2AA9B58AF29D71104C0 /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
@@ -128,6 +131,7 @@
 		D725FCFBF02E2CBD0D882C68 /* Font+DesignToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+DesignToken.swift"; sourceTree = "<group>"; };
 		DACD08C318433F8C684DC236 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		DF0FA7ABDB1A2B260C152801 /* Monastery360Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monastery360Tests.swift; sourceTree = "<group>"; };
+		E73821542B32E34707B7E735 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		E824D19E6373EA7A670DBAB0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F0E04CEAE5A5536286A05129 /* ButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
 		F737B742FE622C01ABB18E51 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
@@ -291,6 +295,8 @@
 		791D39A682ACB9954E3D2F0A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AF638138B6256191E4130C31 /* Experience360ViewModel.swift */,
+				E73821542B32E34707B7E735 /* MapViewModel.swift */,
 				9D70B92ECF1F8B195976A2A7 /* MonasteryDetailViewModel.swift */,
 			);
 			path = ViewModels;
@@ -579,6 +585,7 @@
 				E66F77867319FEE903A35B9F /* DiscoveryView.swift in Sources */,
 				3AE35EFCAE74124AF3B0B8A4 /* EmptyStateView.swift in Sources */,
 				5BC3936706B278ED2F5DAC12 /* Experience360View.swift in Sources */,
+				84BE96E176F64B5C44CF3F31 /* Experience360ViewModel.swift in Sources */,
 				BD12E60B1059F18A6B7ACCC1 /* FirestoreService.swift in Sources */,
 				45728B91E6071362AFEE6D95 /* Font+DesignToken.swift in Sources */,
 				584B98611056BB8695ED5367 /* GlobalConfigService.swift in Sources */,
@@ -590,6 +597,7 @@
 				D7BE89625549E8581111A4DE /* M360Toggle.swift in Sources */,
 				D7BF554284E461B21D3FFD3A /* MainTabView.swift in Sources */,
 				F2FF9365AD626C7AB0CAE6F4 /* MapView.swift in Sources */,
+				3828BCC8AA1909000C2D292C /* MapViewModel.swift in Sources */,
 				C1A5D3E87E7BE393B6CCBDD4 /* Monastery.swift in Sources */,
 				4C8DA7FC2DCF12F55B417632 /* Monastery360App.swift in Sources */,
 				F64599C40D6A223590CE1443 /* MonasteryComponents.swift in Sources */,

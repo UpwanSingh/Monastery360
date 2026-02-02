@@ -2,33 +2,36 @@ import SwiftUI
 
 struct Experience360View: View {
     let monasteryId: String
-    @Environment(Router.self) var router
-    private let repository = MonasteryRepository() // Direct instantiation as per pattern, or inject via DI if strictly needed.
     
-    @State private var isGyroEnabled = true
+    @Environment(Router.self) var router
+    @Environment(\.diContainer) var di
+    
+    @State private var viewModel: Experience360ViewModel?
     @State private var showInfo = false
-    @State private var url: URL?
-    @State private var monastery: Monastery?
-    @State private var isLoading = true
     
     var body: some View {
         ZStack {
             // 1. 360 Canvas
-            if let url = url {
+            if let vm = viewModel, let url = vm.panoramaUrl {
+                // Binding to ViewModel state
+                let gyroBinding = Binding(
+                    get: { vm.isGyroEnabled },
+                    set: { vm.isGyroEnabled = $0 }
+                )
+                
                 PanoramaView(
                     imageUrl: url,
-                    isGyroEnabled: $isGyroEnabled
+                    isGyroEnabled: gyroBinding
                 )
                 .ignoresSafeArea()
-            } else if isLoading {
+            } else if viewModel?.isLoading == true {
                 ProgressView()
                     .tint(.white)
             } else {
-                ContentUnavailableView("Panorama Not Available", systemImage: "photo.badge.exclamationmark")
+                ContentUnavailableView(viewModel?.error ?? "Panorama Not Available", systemImage: "photo.badge.exclamationmark")
                     .foregroundStyle(.white)
             }
             
-            // ... strict fetch on appear
             // 2. HUD - Top
             VStack {
                 HStack {
@@ -40,7 +43,7 @@ struct Experience360View: View {
                     }
                     Spacer()
                     
-                    Text(monastery?.name.en ?? "Loading...") // Dynamic Scene Name
+                    Text(viewModel?.monastery?.name.en ?? "Loading...")
                         .style(Typography.h3)
                         .foregroundStyle(.white)
                         .shadow(radius: 2)
@@ -64,12 +67,14 @@ struct Experience360View: View {
                     Spacer()
                     
                     // Controls
-                    Button(action: { isGyroEnabled.toggle() }) {
-                        Image(systemName: isGyroEnabled ? "gyroscope" : "hand.draw")
-                            .font(.title2)
-                            .padding()
-                            .background(.ultraThinMaterial, in: Circle())
-                            .foregroundStyle(isGyroEnabled ? Color.Brand.secondary : .white)
+                    if let vm = viewModel {
+                        Button(action: { vm.isGyroEnabled.toggle() }) {
+                            Image(systemName: vm.isGyroEnabled ? "gyroscope" : "hand.draw")
+                                .font(.title2)
+                                .padding()
+                                .background(.ultraThinMaterial, in: Circle())
+                                .foregroundStyle(vm.isGyroEnabled ? Color.Brand.secondary : .white)
+                        }
                     }
                 }
                 .padding(.bottom, Space.xl)
@@ -78,8 +83,8 @@ struct Experience360View: View {
         .navigationBarHidden(true)
         .sheet(isPresented: $showInfo) {
             VStack(spacing: Space.lg) {
-                Text(monastery?.name.en ?? "Scene Info").style(Typography.h2)
-                Text(monastery?.shortDesc ?? "Loading details...")
+                Text(viewModel?.monastery?.name.en ?? "Scene Info").style(Typography.h2)
+                Text(viewModel?.monastery?.shortDesc ?? "Loading details...")
                     .style(Typography.bodyMd)
                 Spacer()
             }
@@ -87,23 +92,16 @@ struct Experience360View: View {
             .presentationDetents([.medium, .fraction(0.3)])
         }
         .onAppear {
-            loadPanorama()
-        }
-    }
-    
-    private func loadPanorama() {
-        Task {
-            do {
-                if let fetched = try await repository.fetchMonastery(id: monasteryId) {
-                    self.monastery = fetched
-                    if let stringUrl = fetched.panoramaUrl, let u = URL(string: stringUrl) {
-                        self.url = u
-                    }
+            if viewModel == nil {
+                // In production, we assume DI Container has setup the Repo/Service
+                // But specifically for Repository, we instantiate it with the Services
+                let repo = MonasteryRepository(firestoreService: di.firestoreService, tenantService: di.tenantService)
+                let vm = Experience360ViewModel(repository: repo, offlineManager: di.offlineManager, tenantService: di.tenantService)
+                self.viewModel = vm
+                
+                Task {
+                    await vm.loadPanorama(monasteryId: monasteryId)
                 }
-                isLoading = false
-            } catch {
-                print("Failed to load 360 data: \(error)")
-                isLoading = false
             }
         }
     }

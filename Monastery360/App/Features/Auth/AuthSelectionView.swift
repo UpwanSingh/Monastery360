@@ -65,3 +65,6 @@ struct AuthSelectionView: View {
         }
     }
 }
+#Preview {
+    AuthSelectionView()
+}
